@@ -19,7 +19,7 @@ import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/sh
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    ShoppingListEditComponent
+    ShoppingListEditComponent,
   ],
   imports: [
     BrowserModule

@@ -1,0 +1,23 @@
+/* margin and padding is calculated at fraction of 16px 
+0 - for classes that eliminate the margin or padding by setting it to 0
+1 - (by default) for classes that set the margin or padding to $spacer * .25
+2 - (by default) for classes that set the margin or padding to $spacer * .5
+3 - (by default) for classes that set the margin or padding to $spacer
+4 - (by default) for classes that set the margin or padding to $spacer * 1.5
+5 - (by default) for classes that set the margin or padding to $spacer * 3 */
+
+.m-0 {
+    margin: 0;
+}
+.m-1 {
+    margin: 4px;
+}
+.p-0 {
+    padding: 0;
+}
+.p-1 {
+    padding: 4px;
+}
+.font-weight-bold {
+    font-weight: bold;
+}
