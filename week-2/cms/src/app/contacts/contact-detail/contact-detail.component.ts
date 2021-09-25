@@ -7,8 +7,8 @@ import { Contact } from '../contact.model';
   styleUrls: ['./contact-detail.component.css']
 })
 export class ContactDetailComponent implements OnInit {
-  //contact: Contact = [];
-  
+  contact: Array<Contact>;
+
   constructor() { }
 
   ngOnInit(): void {
