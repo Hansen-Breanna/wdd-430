@@ -3,5 +3,5 @@ export class Message {
         public id: number,
         public subject: string,
         public msgText: string,
-        public send: string) { }
+        public sender: string) { }
 }

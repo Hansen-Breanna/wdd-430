@@ -1,3 +1,4 @@
+import { Message } from '../message.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-item.component.css']
 })
 export class MessageItemComponent implements OnInit {
+  message: Message;
 
   constructor() { }
 
