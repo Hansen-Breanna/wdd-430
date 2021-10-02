@@ -7,8 +7,8 @@ import { Message } from '../message.model';
   styleUrls: ['./message-edit.component.css']
 })
 export class MessageEditComponent implements OnInit {
-  @ViewChild('subject', {static: true}) subjectInputRef: ElementRef;
-  @ViewChild('msgText', {static: true}) msgTextInputRef: ElementRef;
+  @ViewChild('subject') subjectInputRef: ElementRef;
+  @ViewChild('msgText') msgTextInputRef: ElementRef;
   @Output() addMessageEvent = new EventEmitter<Message>();
   currentSender = "Breanna Hansen";
 
@@ -17,15 +17,16 @@ export class MessageEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSendMessage(msgTextInputRef: HTMLInputElement, subjectInputRef: HTMLInputElement) {
+  onSendMessage() {
     const msgSubject = this.subjectInputRef.nativeElement.value;
     const msgText = this.msgTextInputRef.nativeElement.value;
     const newMessage = new Message(10, msgSubject, msgText, this.currentSender);
+    console.log(newMessage);
     this.addMessageEvent.emit(newMessage);
     this.subjectInputRef.nativeElement.value = "new";
   }
 
-  onClear(msgTextInputRef: HTMLInputElement, subjectInputRef: HTMLInputElement) {
+  onClear() {
     this.subjectInputRef.nativeElement.value = '';
     this.msgTextInputRef.nativeElement.value = '';
   }

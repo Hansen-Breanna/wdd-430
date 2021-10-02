@@ -13,8 +13,8 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success m-1" type="submit" (click)="onSendMessage()">Send</button>
-          <button class="btn btn-danger m-1" type="button" (click)="onClear()" >Clear</button>
+          <button class="btn btn-success m-1" type="submit" (click)="onSendMessage(); $event.preventDefault()">Send</button>
+          <button class="btn btn-danger m-1" type="submit" (click)="onClear(); $event.preventDefault()" >Clear</button>
         </div>
       </div>
     </form>
