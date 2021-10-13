@@ -1,7 +1,7 @@
 import { Message } from '../message.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { ContactService } from 'src/app/contacts/contact.service';
-import { Contact } from 'src/app/contacts/contact.model';
+import { ContactService } from '../../contacts/contact.service';
+import { Contact } from '../../contacts/contact.model';
 
 @Component({
   selector: 'cms-message-item',

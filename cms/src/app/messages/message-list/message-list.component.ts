@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MOCKMESSAGES } from 'src/app/shared/wdd430_document_wk05files/lesson5Files/MOCKMESSAGES';
 import { Message } from '../message.model';
 import { MessageService } from '../message.service';
 
@@ -9,7 +8,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./message-list.component.css']
 })
 export class MessageListComponent implements OnInit {
-  messages: Message [] = [];
+  messages: Message[] = [];
 
   constructor(private messageService: MessageService) { }
 
@@ -22,3 +21,4 @@ export class MessageListComponent implements OnInit {
   }
 
 }
+

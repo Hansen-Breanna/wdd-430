@@ -18,12 +18,12 @@ export class DocumentService {
   }
 
   getDocument(id: string) {
-    for (let document of this.documents) { // FOR each contact in the contacts list
-      if (document.id == id) { // IF contact.id equals the id THEN
-        return document; //RETURN contact
+    for (let document of this.documents) { 
+      if (document.id == id) {
+        return document; 
       }
     }
-    return null; //    RETURN null 
+    return null; 
   }
 }
 

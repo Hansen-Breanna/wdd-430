@@ -16,13 +16,13 @@ export class MessageService {
     return this.messages.slice();
   }
 
-  getMessage(id: string) {
-    for (let message of this.messages) { // FOR each contact in the contacts list
-      if (message.id == id) { // IF contact.id equals the id THEN
-        return message; //RETURN contact
+  getMessage(id: string): Message {
+    for (let message of this.messages) { 
+      if (message.id == id) { 
+        return message; 
       }
     }
-    return null; //    RETURN null 
+    return null; 
   }
 }
 
