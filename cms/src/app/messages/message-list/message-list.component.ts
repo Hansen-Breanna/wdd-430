@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MOCKMESSAGES } from 'src/app/shared/wdd430_document_wk05files/lesson5Files/MOCKMESSAGES';
 import { Message } from '../message.model';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'cms-message-list',
@@ -7,15 +9,12 @@ import { Message } from '../message.model';
   styleUrls: ['./message-list.component.css']
 })
 export class MessageListComponent implements OnInit {
-  messages: Array<Message> = [
-    new Message(1, "Welcome to John", "Welcome to our newest team member, John Pemberly!", "Breanna Hansen"),
-    new Message(2, "Printer broken", "The printer in office 23 is scheduled for repairs. Please use the printer in office 22.", "John Matus"),
-    new Message(3, "Printer back online", "The printer in office 23 has been repaired. Regular print jobs may resume.", "Lacey Wilcox")
-  ];
+  messages: Message [] = [];
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.messages = this.messageService.getMessages();
   }
 
   onAddMessage(message: Message) {
