@@ -119,11 +119,20 @@ export const MOCKCONTACTS: Contact[] = [
     imageUrl: '../../assets/images/thompsonda.jpg',
     group: null
   },
+   // index 101
+   {
+    id: '101',
+    name: 'Breanna Hansen',
+    email: 'gal95002@byui.edu',
+    phone: '208-123-4567',
+    imageUrl: '../../assets/images/hansenBreanna.png',
+    group: null
+  },
 
   // teams
   // index 13
   {
-    id: '4', name: 'Network/OS team', email: ' ', phone: ' ', imageUrl: ' ', group: [
+    id: '4', name: 'Network/OS team', email: ' ', phone: ' ', imageUrl: '../../assets/images/networkOS.png', group: [
       {
         id: '2',
         name: 'Bradley Armstrong',
@@ -153,7 +162,7 @@ export const MOCKCONTACTS: Contact[] = [
 
   // index 14
   {
-    id: '6', name: 'Software Development team', email: ' ', phone: ' ', imageUrl: ' ', group: [
+    id: '6', name: 'Software Development team', email: ' ', phone: ' ', imageUrl: '../../assets/images/softwareDevelopment.png', group: [
       {
         id: '1',
         name: 'Rex Barzee',
@@ -191,7 +200,7 @@ export const MOCKCONTACTS: Contact[] = [
 
   // index 15
   {
-    id: '10', name: 'Web Development team', email: ' ', phone: ' ', imageUrl: ' ', group: [
+    id: '10', name: 'Web Development team', email: ' ', phone: ' ', imageUrl: '../../assets/images/webDevelopment.png', group: [
       {
         id: '15',
         name: 'Blaine Robertson',
@@ -221,7 +230,7 @@ export const MOCKCONTACTS: Contact[] = [
 
   // index 16
   {
-    id: '14', name: 'Database team', email: ' ', phone: ' ', imageUrl: ' ', group: [
+    id: '14', name: 'Database team', email: ' ', phone: ' ', imageUrl: '../../assets/images/databaseTeam.png', group: [
       {
         id: '7',
         name: 'R. Kent Jackson',
@@ -251,7 +260,7 @@ export const MOCKCONTACTS: Contact[] = [
 
   // index 17
   {
-    id: '18', name: 'Computer Security team', email: ' ', phone: ' ', imageUrl: ' ', group: [
+    id: '18', name: 'Computer Security team', email: ' ', phone: ' ', imageUrl: '../../assets/images/computerSecurity.png', group: [
       {
         id: '5',
         name: 'Kory Godfrey',
