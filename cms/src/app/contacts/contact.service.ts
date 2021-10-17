@@ -6,14 +6,14 @@ import { MOCKCONTACTS } from './MOCKCONTACTS';
   providedIn: 'root'
 })
 export class ContactService {
-  contacts: Contact [] = [];
+  contacts: Contact[] = [];
   contactSelectedEvent = new EventEmitter<Contact>();
 
   constructor() {
      this.contacts = MOCKCONTACTS;
   }
 
-  getContacts(): Contact[] {  // should this be getContacts() only?
+  getContacts(): Contact[] {  
     return this.contacts.slice();
   }
 
