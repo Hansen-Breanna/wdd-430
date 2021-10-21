@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { WindRefService } from 'src/app/wind-ref.service';
 import { Document } from '../document.model';
 import { DocumentService } from '../document.service';
 
@@ -11,8 +12,15 @@ import { DocumentService } from '../document.service';
 export class DocumentDetailComponent implements OnInit {
   document: Document;
   id: string;
+  nativeWindow: any;
 
-  constructor(private documentService: DocumentService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private documentService: DocumentService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    private windRefService: WindRefService) {
+      this.nativeWindow = windRefService.getNativeWindow();
+     }
 
   ngOnInit(): void {
     this.route.params.subscribe(
@@ -21,6 +29,12 @@ export class DocumentDetailComponent implements OnInit {
         this.document = this.documentService.getDocument(this.id);
       }
     );
+  }
+
+  onView() {
+    if(this.document.url) {
+      this.nativeWindow.open(this.document.url);
+    }
   }
 
 }

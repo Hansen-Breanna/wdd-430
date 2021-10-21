@@ -3,7 +3,7 @@
       <div class="row pad-all">
         <h4 class="title margin-left-right">{{ document.name }}<!-- display document description here --></h4>
         <div class="row pull-right margin-left-right">
-          <a class="btn btn-primary m-1">View</a>
+          <a class="btn btn-primary m-1" (click)="onView()">View</a>
           <a class="btn btn-info m-1" routerLink="edit">Edit</a>
           <a class="btn btn-danger m-1">Delete</a>
         </div>
