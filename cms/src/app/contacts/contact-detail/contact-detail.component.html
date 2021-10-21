@@ -9,8 +9,8 @@
                <img [src]=contact.imageUrl alt="{{ contact.name }}" class="img-responsive" style="max-height: 50px;">
               </div>
               <span class="pull-right">
-                  <a routerLink="edit" class="btn btn-primary m-1">Edit</a>
-                  <a href="#" class="btn btn-danger m-1">Delete</a>
+                  <a class="btn btn-primary m-1" routerLink="edit">Edit</a>
+                  <a class="btn btn-danger m-1" (click)="onDelete()">Delete</a> <!-- Should this have a routerLink? -->
               </span>
             </div>
           </div>
