@@ -9,7 +9,6 @@ import { Subject } from 'rxjs';
 export class DocumentService {
   documents: Document[] = [];
   documentSelectedEvent = new EventEmitter<Document>();
-  documentChangedEvent = new EventEmitter<Document[]>();
   documentListChangedEvent = new Subject<Document[]>();
   maxDocumentId: number;
 
@@ -31,21 +30,8 @@ export class DocumentService {
     return null;
   }
 
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   }
-  //   const pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   }
-  //   this.documents.splice(pos, 1);
-  //   this.documentChangedEvent.emit(this.documents.slice());
-  // }
-
   getMaxId(): number {
     var maxId = 0;
-
     for (let document of this.documents) { //for each document in the documents list
       var currentId = parseInt(document.id); //currentId = convert document.id into a number
       if (currentId > maxId) { //if currentId > maxId then
@@ -92,12 +78,12 @@ export class DocumentService {
 
     var pos = this.documents.indexOf(document);// pos = documents.indexOf(document)
     if (pos < 0) {// if pos < 0 then
-       return;//  return
+      return;//  return
     }// endIf
 
     this.documents.splice(pos, 1); // documents.splice(pos, 1)
     var documentsListClone = this.documents.slice(); // documentsListClone = documents.slice()
     this.documentListChangedEvent.next(documentsListClone); // documentListChangedEvent.next(doumentsListClone)
-}
+  }
 }
 
