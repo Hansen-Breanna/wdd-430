@@ -59,7 +59,7 @@ export class ContactService {
     } //endIf
 
     this.maxContactId++; //this.maxContactId++
-    newContact.id = this.maxContactId.toString(); //newContact.id = this.maxContactId
+    newContact.id = `${this.maxContactId}`; //newContact.id = this.maxContactId
     this.contacts.push(newContact);//push newContact onto the contacts list
     var contactsListClone = this.contacts.slice(); // contactsListClone = contacts.slice()
     this.contactListChangedEvent.next(contactsListClone); // contactListChangedEvent.next(contactsListClone)
