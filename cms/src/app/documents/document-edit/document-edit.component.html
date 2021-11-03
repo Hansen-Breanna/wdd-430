@@ -14,7 +14,7 @@
               name="name"
               [ngModel]="document?.name"
               required
-              #name=ngModel>
+              #name="ngModel">
           </div>
         </div>
 
@@ -28,7 +28,8 @@
               size="120"
               max="255"
               name="description"
-              [ngModel]="document?.description">
+              [ngModel]="document?.description"
+              #url="ngModel">
           </div>
         </div>
   
@@ -44,7 +45,7 @@
               name="url"
               [ngModel]="document?.url"
               required
-              #url=ngModel>
+              #url="ngModel">
               <div class="alert alert-dangers" *ngIf="!document.url||!document.name">
                   <p>The Document Title and Document URL are required fields.</p>
               </div>
