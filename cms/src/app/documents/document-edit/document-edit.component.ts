@@ -26,8 +26,8 @@ export class DocumentEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.document.id = params['id']; //id = value of id parameter in params list
-        if (params['id'] == undefined || null) {//if id parameter is undefined or null then
+        this.document.id = params.id;//`${params.id}`; //id = value of id parameter in params list
+        if (params.id == undefined || null) {//if id parameter is undefined or null then
           this.editMode = false;//editMode = false
           return; //return
         }//endif
@@ -43,7 +43,6 @@ export class DocumentEditComponent implements OnInit {
         //document = clone originalDocument
       });
   }
-
 
   onSubmit(form: NgForm) {
     const value = form.value; //value = form.value // get values from form’s fields

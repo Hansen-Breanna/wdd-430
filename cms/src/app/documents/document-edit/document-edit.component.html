@@ -29,7 +29,7 @@
               max="255"
               name="description"
               [ngModel]="document?.description"
-              #url="ngModel">
+              #description="ngModel">
           </div>
         </div>
   
@@ -46,7 +46,7 @@
               [ngModel]="document?.url"
               required
               #url="ngModel">
-              <div class="alert alert-dangers" *ngIf="!document.url||!document.name">
+              <div class="alert alert-dangers" *ngIf="!url.value||!name.value"> <!-- Need to add in ngIf -->
                   <p>The Document Title and Document URL are required fields.</p>
               </div>
           </div>
