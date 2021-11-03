@@ -19,19 +19,16 @@ export class DocumentEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-  // ngOnInit(): void {
-  //   this.document = new Document("","","","",null);
-  // }
-
   ngOnInit() {
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.document.id = params.id;//`${params.id}`; //id = value of id parameter in params list
+    this.route.params.subscribe( //route.subscribe(
+      (params: Params) => { //(params: Params) =>
+        var id = params.id;//`${params.id}`; //id = value of id parameter in params list
         if (params.id == undefined || null) {//if id parameter is undefined or null then
+          console.log("new document");
           this.editMode = false;//editMode = false
           return; //return
         }//endif
-        this.originalDocument = this.documentService.getDocument(this.document.id);
+        this.originalDocument = this.documentService.getDocument(id);
         //originalDocument = getDocument(id)
 
         if (this.originalDocument == undefined || null) {
