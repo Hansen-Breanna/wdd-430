@@ -30,10 +30,10 @@
               name="email"
               [ngModel]="contact?.email"
               #email="ngModel"
-              pattern=“[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$”>
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
           </div>
         </div>
-        <div class="alert alert-danger" *ngIf="!email.valid&&email.touched">
+        <div class="alert alert-danger" *ngIf="!email.valid && email.touched">
             <p>Enter a valid Email address.</p>
         </div>
 
@@ -52,7 +52,7 @@
               pattern="\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*">
           </div>
         </div>
-        <div class="alert alert-danger" *ngIf="!phone.valid&&phone.touched">
+        <div class="alert alert-danger" *ngIf="!phone.valid && phone.touched">
             <p>Enter a valid phone number.</p>
         </div>
   
@@ -90,9 +90,10 @@
           </div>
         </div>
   
-        <div class="alert alert-danger" *ngIf="(!name.valid&&name.untouched)||(!email.valid&&email.untouched)">
+        <div class="alert alert-danger" *ngIf="(!name.valid && name.untouched)||(!email.valid && email.untouched)">
             <p>The Name and Email fields are required.</p>
         </div>
+
         <div class="row">
           <div class="col-xs-12 btn-toolbar">
             <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
