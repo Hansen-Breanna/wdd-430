@@ -86,4 +86,3 @@ export class DocumentService {
     this.documentListChangedEvent.next(documentsListClone); // documentListChangedEvent.next(doumentsListClone)
   }
 }
-
