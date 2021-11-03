@@ -16,6 +16,10 @@
   margin: 4px;
 }
 
+.ml-1 {
+  margin-left: 4px;
+}
+
 .title {
   font-size: 2.5rem;
   font-weight: bold;
