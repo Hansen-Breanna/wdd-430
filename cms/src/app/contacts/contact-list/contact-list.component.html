@@ -1,31 +1,17 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="panel panel-default">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="row">
-                <span class="title pad-left-right">Contacts</span>
-              </div>
-              <div class="row">
-                <div class="input-group pull-left pad-left-right col-xs-7">
-                  <input type="text" #searchBox (keyup)="search(searchBox.value)" class="form-control ml-1"
-                    placeholder="Enter a search value"><!-- Add the search box input field here -->
-                  <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
-                </div>
-                <div class="pull-right pad-left-right">
-                  <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="panel-heading">
+        <div class="row pad-left-right">
+          <span class="title pull-left">Contacts</span>
+          <button class="btn btn-success pull-right" routerLink="new">New Contact</button>
         </div>
       </div>
       <div class="panel-body">
-        <cms-contact-item *ngFor="let contactItemElement of contacts | contactsFilter:term:'#searchBox.value'" [contact]="contactItemElement" dnd-draggable
-          [dragEnabled]="true" [dragData]="contactItemElement" [dropZones]="['contactGroup']">
-        </cms-contact-item>
+        <cms-contact-item 
+          *ngFor="let contactItemElement of contacts" 
+          [contact]="contactItemElement"
+          dnd-draggable [dragEnabled]="true" [dragData]="contactItemElement" [dropZones]="['contactGroup']"></cms-contact-item>
       </div>
     </div>
   </div>

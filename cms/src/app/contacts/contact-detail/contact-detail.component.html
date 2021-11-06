@@ -19,6 +19,10 @@
             <ul class="list-unstyled">
                 <li><span class="font-weight-bold">Email: </span>{{ contact.email }}</li>
                 <li><span class="font-weight-bold">Phone: </span>{{ contact.phone }}</li>
+                <li><span class="font-weight-bold">Group Contacts: </span></li>
+                <li *ngFor="let contact of contact.group; let i = index" class="mt-1">
+                    <cms-contact-item class="col-sm-12" [contact]="contact"></cms-contact-item>    
+                </li>
             </ul>
         </div>
       </div>

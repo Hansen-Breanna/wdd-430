@@ -1,4 +1,3 @@
-import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -24,7 +23,6 @@ export class DocumentEditComponent implements OnInit {
       (params: Params) => { //(params: Params) =>
         var id = params.id;//`${params.id}`; //id = value of id parameter in params list
         if (params.id == undefined || null) {//if id parameter is undefined or null then
-          console.log("new document");
           this.editMode = false;//editMode = false
           return; //return
         }//endif
