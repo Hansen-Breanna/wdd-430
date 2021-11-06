@@ -2,3 +2,6 @@ input.ng-invalid {
     border: 1px solid red;
   }
   
+  .mt-2 {
+      margin-top: 8px;
+  }

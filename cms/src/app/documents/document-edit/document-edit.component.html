@@ -46,7 +46,7 @@
               [ngModel]="document?.url"
               required
               #url="ngModel">
-              <div class="alert alert-dangers" *ngIf="!url.valid||!name.valid"> <!-- Need to add in ngIf -->
+              <div class="alert alert-danger mt-2" *ngIf="!url.valid||!name.valid"> <!-- Need to add in ngIf -->
                   <p>The Document Title and Document URL are required fields.</p>
               </div>
           </div>
