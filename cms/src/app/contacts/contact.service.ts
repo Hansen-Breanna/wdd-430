@@ -36,30 +36,43 @@ export class ContactService {
         });
   }
 
+  getContactsFromDB() {
+    this.http.get<Contact[]>('https://wdd-430-cms-5f4a1-default-rtdb.firebaseio.com/contacts.json')
+    .subscribe(
+      // success method
+      (contacts: Contact[]) => {
+        this.contacts = contacts;
+        this.maxContactId = this.getMaxId();
+        this.contacts.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });//sort the list of contacts
+        var contactsListClone = this.contacts.slice(); // contactsListClone = contacts.slice()
+        this.contactListChangedEvent.next(contactsListClone);//emit the next document list change event
+        this.maxContactId = this.getMaxId();
+      },
+      // error method
+      (error: any) => {
+        console.log(error.message); //print the error to the console
+      });
+  }
+
   getContacts(): Contact[] {
     return this.contacts.slice();
   }
 
   getContact(id: string): Contact {
+    console.log("test contacts: " + this.contacts);
     for (let contact of this.contacts) { // FOR each contact in the contacts list
       if (contact.id == id) { // IF contact.id equals the id THEN
         return contact; //RETURN contact
-      }
+      } 
     }
-    return null; //    RETURN null 
+    return null; // RETURN null 
   }
-
-  // deleteContact(contact: Contact) {
-  //   if (!contact) {
-  //     return;
-  //   }
-  //   const pos = this.contacts.indexOf(contact);
-  //   if (pos < 0) {
-  //     return;
-  //   }
-  //   this.contacts.splice(pos, 1);
-  //   this.contactListChangedEvent.next(this.contacts.slice());
-  // }
 
   getMaxId(): number {
     var maxId = 0;

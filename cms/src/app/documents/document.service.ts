@@ -36,7 +36,7 @@ export class DocumentService {
         });
   }
 
-  getDocuments(): Document[] { // Changed from 'Document[]'
+  getDocuments(): Document[] { 
     return this.documents.slice();
   }
 
