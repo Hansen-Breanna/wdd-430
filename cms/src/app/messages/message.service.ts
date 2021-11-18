@@ -15,11 +15,12 @@ export class MessageService {
 
   getMessages(): void {
     // return this.messages.slice();
-    this.http.get<Message[]>('https://wdd-430-cms-5f4a1-default-rtdb.firebaseio.com/messages.json')
+    this.http.get<Message[]>('http://localhost:3000/messages')
     .subscribe(
       // success method
       (messages: Message[]) => {
         this.messages = messages;
+        this.messages = JSON.parse(JSON.stringify(this.messages)).messages;
         this.maxMessageId = this.getMaxId();
         var messagesListClone = this.messages.slice(); // messagesListClone = messages.slice()
         this.messageChangedEvent.emit(messagesListClone);//emit the next message list change event
@@ -40,19 +41,43 @@ export class MessageService {
     return null; 
   }
 
-  addMessage(newMessage: Message) {
-    if (!newMessage) { //if newContact is undefined or null then
-      return;
-    } //endIf
+  // addMessage(newMessage: Message) {
+  //   if (!newMessage) { //if newContact is undefined or null then
+  //     return;
+  //   } //endIf
 
-    this.maxMessageId = this.getMaxId();
-    this.maxMessageId++; //this.maxContactId++
-    console.log(this.maxMessageId);
-    newMessage.id = this.maxMessageId.toString();
-    console.log(newMessage);
-    this.messages.push(newMessage);
-    this.storeMessages(this.messages);
+  //   this.maxMessageId = this.getMaxId();
+  //   this.maxMessageId++; //this.maxContactId++
+  //   console.log(this.maxMessageId);
+  //   newMessage.id = this.maxMessageId.toString();
+  //   console.log(newMessage);
+  //   this.messages.push(newMessage);
+  //   this.storeMessages(this.messages);
+  // }
+
+  
+addMessage(message: Message) {
+  if (!message) {
+    return;
   }
+
+  // make sure id of the new Message is empty
+  message.id = '';
+
+  const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+  // add to database
+  this.http.post<{ message: Message }>('http://localhost:3000/messages',
+    message,
+    { headers: headers })
+    .subscribe(
+      (responseData) => {
+        // add new message to messages
+        this.messages.push(responseData.message);
+        // this.sortAndSend();
+      }
+    );
+}
 
   getMaxId(): number {
     var maxId = 0;
@@ -68,7 +93,7 @@ export class MessageService {
   storeMessages(messages: Message[]) {
     //const messages = JSON.stringify(this.getMessages());
     //Create a new HttpHeaders object that sets the Content-Type of the HTTP request to application/json.
-    this.http.put('https://wdd-430-cms-5f4a1-default-rtdb.firebaseio.com/messages.json', messages,
+    this.http.put('http://localhost:3000/messages', messages,
       {
         headers: new HttpHeaders({'Content-Type': 'application/json'})
       }
