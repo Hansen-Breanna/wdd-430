@@ -76,7 +76,6 @@ router.put('/:id', (req, res, next) => {
         });
       });
   });
-
   
 router.delete("/:id", (req, res, next) => {
     Document.findOne({ id: req.params.id })
