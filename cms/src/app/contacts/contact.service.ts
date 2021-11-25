@@ -46,7 +46,7 @@ export class ContactService {
         this.contacts = JSON.parse(JSON.stringify(this.contacts)).contacts;
         this.maxContactId = this.getMaxId();
         this.contacts.sort((a, b) => {
-          if (a.name > b.name) {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return 1;
           } else {
             return -1;
@@ -67,7 +67,6 @@ export class ContactService {
   }
 
   getContact(id: string): Contact {
-    console.log("test contacts: " + this.contacts);
     for (let contact of this.contacts) { // FOR each contact in the contacts list
       if (contact.id == id) { // IF contact.id equals the id THEN
         return contact; //RETURN contact
@@ -86,58 +85,40 @@ export class ContactService {
     } //endFor
     return maxId;
   }
-
-  // addContact(newContact: Contact) {
-  //   if (newContact == undefined || null) { //if newContact is undefined or null then
-  //     return;
-  //   } //endIf
-
-  //   this.maxContactId++; //this.maxContactId++
-  //   newContact.id = `${this.maxContactId}`; //newContact.id = this.maxContactId
-  //   this.contacts.push(newContact);//push newContact onto the contacts list
-  //   this.storeContacts();
-  // }
-
   
-addContact(contact: Contact) {
-  if (!contact) {
-    return;
+  addContact(contact: Contact) {
+    if (!contact) {
+      return;
+    }
+
+    // make sure id of the new Contact is empty
+    contact.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ message: string, contact: Contact }>('http://localhost:3000/contacts',
+      contact,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new contact to contacts
+          this.contacts.push(responseData.contact);
+          this.sortAndSend();
+        }
+      );
   }
 
-  // make sure id of the new contact is empty
-  contact.id = '';
-
-  const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
-  // add to database
-  this.http.post<{ message: string, contact: Contact }>('http://localhost:3000/contacts',
-    contact,
-    { headers: headers })
-    .subscribe(
-      (responseData) => {
-        // add new contact to contacts
-        this.contacts.push(responseData.contact);
-        // this.sortAndSend();
+  sortAndSend() {
+    this.contacts.sort((a, b) => {
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      } else {
+        return -1;
       }
-    );
-}
-
-
-  // updateContact(originalContact: Contact, newContact: Contact) {
-  //   if ((originalContact == undefined || null) || (newContact == undefined || null)) {
-  //     //if originalContact or newContact is undefined or null then
-  //     return; // return
-  //   } // endIf
-
-  //   var pos = this.contacts.indexOf(originalContact);// pos = contacts.indexOf(originalContact)
-  //   if (pos < 0) { // if pos < 0 then
-  //     return;  // return
-  //   }// endIf
-
-  //   newContact.id = originalContact.id; // newContact.id = originalContact.id
-  //   this.contacts[pos] = newContact; // contacts[pos] = newContact
-  //   this.storeContacts();
-  // }
+    });//sort the list of contacts
+    this.contactListChangedEvent.next([...this.contacts]);
+  }
 
   updateContact(originalContact: Contact, newContact: Contact) {
     if (!originalContact || !newContact) {
@@ -162,7 +143,7 @@ addContact(contact: Contact) {
       .subscribe(
         (response: Response) => {
           this.contacts[pos] = newContact;
-          // this.sortAndSend();
+          this.contactListChangedEvent.next([...this.contacts]);
         }
       );
   }
@@ -184,7 +165,7 @@ addContact(contact: Contact) {
       .subscribe(
         (response: Response) => {
           this.contacts.splice(pos, 1);
-          // this.sortAndSend();
+          this.contactListChangedEvent.next([...this.contacts]);
         }
       );
   }

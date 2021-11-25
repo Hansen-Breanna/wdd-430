@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var documentSchema = mongoose.Schema({
     id: { type: String, required: true},
     name: { type: String },
+    description: { type: String },
     url: { type: String },
     children:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Document' }]
 });

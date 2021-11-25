@@ -19,9 +19,10 @@ export class DocumentService {
         (documents: Document[]) => {
           this.documents = documents;
           this.documents = JSON.parse(JSON.stringify(this.documents)).documents;
+          console.log(documents);
           this.maxDocumentId = this.getMaxId();
           this.documents.sort((a, b) => {
-            if (a.name > b.name) {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return 1;
             } else {
               return -1;
@@ -61,18 +62,6 @@ export class DocumentService {
     return maxId;
   }
 
-  // addDocument(newDocument: Document) {
-  //   if (newDocument == undefined || null) { //if newDocument is undefined or null then
-  //     return;
-  //   } //endIf
-
-  //   this.maxDocumentId++; //this.maxDocumentId++
-  //   newDocument.id = `${this.maxDocumentId}`; //newDocument.id = this.maxDocumentId
-  //   this.documents.push(newDocument);//push newDocument onto the documents list
-  //   this.storeDocuments();
-  // }
-
-
   addDocument(document: Document) {
     if (!document) {
       return;
@@ -91,28 +80,21 @@ export class DocumentService {
         (responseData) => {
           // add new document to documents
           this.documents.push(responseData.document);
-          this.documentListChangedEvent.next([...this.documents]);
-          // this.sortAndSend();
+          this.sortAndSend();
         }
       );
   }
 
-  // updateDocument(originalDocument: Document, newDocument: Document) {
-  //   if ((originalDocument == undefined || null) || (newDocument == undefined || null)) {
-  //     //if originalDocument or newDocument is undefined or null then
-  //     return; // return
-  //   } // endIf
-
-  //   var pos = this.documents.indexOf(originalDocument);// pos = documents.indexOf(originalDocument)
-  //   if (pos < 0) { // if pos < 0 then
-  //     return;  // return
-  //   }// endIf
-
-  //   newDocument.id = originalDocument.id; // newDocument.id = originalDocument.id
-  //   this.documents[pos] = newDocument; // documents[pos] = newDocument
-  //   this.storeDocuments();
-  // }
-
+  sortAndSend() {
+    this.documents.sort((a, b) => {
+      if (a.name.toLowerCase() > b.name.toLowerCase()) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    this.documentListChangedEvent.next([...this.documents]);
+  }
 
   updateDocument(originalDocument: Document, newDocument: Document) {
     if (!originalDocument || !newDocument) {
@@ -137,8 +119,7 @@ export class DocumentService {
       .subscribe(
         (response: Response) => {
           this.documents[pos] = newDocument;
-          this.documentListChangedEvent.next([...this.documents]);
-          // this.sortAndSend();
+          this.sortAndSend();
         }
       );
   }

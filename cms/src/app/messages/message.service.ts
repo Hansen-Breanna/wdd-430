@@ -22,8 +22,8 @@ export class MessageService {
         this.messages = messages;
         this.messages = JSON.parse(JSON.stringify(this.messages)).messages;
         this.maxMessageId = this.getMaxId();
-        var messagesListClone = this.messages.slice(); // messagesListClone = messages.slice()
-        this.messageChangedEvent.emit(messagesListClone);//emit the next message list change event
+        var messagesListClone = this.messages.slice();
+        this.messageChangedEvent.emit(messagesListClone);
         this.maxMessageId = this.getMaxId();
       },
       // error method
@@ -56,25 +56,25 @@ export class MessageService {
   // }
 
   
-addMessage(message: Message) {
-  if (!message) {
+addMessage(messageData: Message) {
+  if (!messageData) {
     return;
   }
 
   // make sure id of the new Message is empty
-  message.id = '';
+  messageData.id = '';
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // add to database
-  this.http.post<{ message: Message }>('http://localhost:3000/messages',
-    message,
+  this.http.post<{ message: string, messageData: Message }>('http://localhost:3000/messages',
+  messageData,
     { headers: headers })
     .subscribe(
       (responseData) => {
         // add new message to messages
-        this.messages.push(responseData.message);
-        // this.sortAndSend();
+        this.messages.push(responseData.messageData);
+        this.messageChangedEvent.next([...this.messages]);
       }
     );
 }
@@ -100,7 +100,7 @@ addMessage(message: Message) {
     )
       .subscribe(response => {
         var messagesListClone = this.messages.slice();
-        this.messageChangedEvent.emit(messagesListClone);
+        this.messageChangedEvent.next(messagesListClone);
       });
   }
 }

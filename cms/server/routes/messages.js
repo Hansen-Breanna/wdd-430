@@ -13,7 +13,6 @@ router.get('/', (req, res, next) => {
             message: "Messages fetched successfully!",
             messages: messages
         });
-        console.log(messages);
       })
       .catch(error => {
          res.status(500).json({
@@ -25,20 +24,20 @@ router.get('/', (req, res, next) => {
 
 // add
 router.post('/', (req, res, next) => {
-    const maxMessageId = sequenceGenerator.nextId("Messages");
+    const maxMessageId = sequenceGenerator.nextId("messages");
   
     const message = new Message({
       id: maxMessageId,
-      name: req.body.name,
-      description: req.body.description,
-      url: req.body.url
+      subject: req.body.subject,
+      msgText: req.body.msgText,
+      sender: req.body.sender
     });
   
     message.save()
       .then(createdMessage => {
         res.status(201).json({
           message: 'Message added successfully',
-          message: createdMessage
+          messageData: createdMessage
         });
       })
       .catch(error => {
@@ -53,9 +52,10 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     Message.findOne({ id: req.params.id })
       .then(message => {
-        message.name = req.body.name;
-        message.description = req.body.description;
-        message.url = req.body.url;
+        message.id = req.body.id;
+        message.subject = req.body.subject;
+        message.msgText = req.body.msgText;
+        messages.sender = req.body.sender;
   
         message.updateOne({ id: req.params.id }, message)
           .then(result => {
