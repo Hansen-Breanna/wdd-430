@@ -1,5 +1,5 @@
 const sequenceGenerator = require('./sequenceGenerator');
-const People = require('../models/people');
+const Person = require('../models/perons');
 
 var express = require('express');
 var router = express.Router();
@@ -7,7 +7,7 @@ module.exports = router;
 
 // // get
 // router.get('/', (req, res, next) => {
-//     People.find()
+//     Persons.find()
 //       .then(documents => {
 //         res.status(200).json({
 //             message: "Documents fetched successfully!",

@@ -1,6 +1,6 @@
 import { Gift } from "../gifts/gift.model";
 
-export class People {
+export class Person {
     constructor(
         public id: string,
         public name: string,

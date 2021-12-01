@@ -1,11 +1,11 @@
 var mongoose = require('mongoose');
 
-var peopleSchema = mongoose.Schema({
+var personSchema = mongoose.Schema({
     id: { type: String, required: true},
     name: { type: String },
     budget: { type: String },
     image: { type: String },
-    group:  [{ type: mongoose.Schema.Types.String, ref: 'People' }]
+    group:  [{ type: mongoose.Schema.Types.String, ref: 'Person' }]
 });
 
-module.exports = mongoose.model('People', peopleSchema);
+module.exports = mongoose.model('Person', personSchema);

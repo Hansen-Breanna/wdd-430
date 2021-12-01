@@ -44,11 +44,11 @@ person = {
 };
 
 // array of objects
-// let people: {
+// let person: {
 //     name: string;   
 //     age: number;
 // }[];
-let people: Person[];
+let persons: Person[];
 
 //  Type inference
 

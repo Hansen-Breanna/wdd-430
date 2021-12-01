@@ -4,12 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { PeopleComponent } from './people/people.component';
+import { PersonsComponent } from './persons/persons.component';
 import { GiftsComponent } from './gifts/gifts.component';
-import { PeopleDetailComponent } from './people/people-detail/people-detail.component';
-import { PeopleEditComponent } from './people/people-edit/people-edit.component';
-import { PeopleListComponent } from './people/people-list/people-list.component';
-import { PeopleItemComponent } from './people/people-list/people-item/people-item.component';
+import { PersonDetailComponent } from './persons/person-detail/person-detail.component';
+import { PersonEditComponent } from './persons/person-edit/person-edit.component';
+import { PersonListComponent } from './persons/person-list/person-list.component';
+import { PersonItemComponent } from './persons/person-list/person-item/person-item.component';
 import { GiftDetailComponent } from './gifts/gift-detail/gift-detail.component';
 import { GiftEditComponent } from './gifts/gift-edit/gift-edit.component';
 import { GiftListComponent } from './gifts/gift-list/gift-list.component';
@@ -21,12 +21,12 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    PeopleComponent,
+    PersonsComponent,
     GiftsComponent,
-    PeopleDetailComponent,
-    PeopleEditComponent,
-    PeopleListComponent,
-    PeopleItemComponent,
+    PersonDetailComponent,
+    PersonEditComponent,
+    PersonListComponent,
+    PersonItemComponent,
     GiftDetailComponent,
     GiftEditComponent,
     GiftListComponent,

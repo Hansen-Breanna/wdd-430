@@ -30,11 +30,11 @@ person = {
     age: 32
 };
 // array of objects
-// let people: {
+// let person: {
 //     name: string;   
 //     age: number;
 // }[];
-var people;
+var person;
 //  Type inference
 // if you immediately initialize a variable, typescript will use the value as the infered type for the variable
 // Union types let you specify more than one type
