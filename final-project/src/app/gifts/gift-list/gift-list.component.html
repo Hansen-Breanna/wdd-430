@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-xs-12">
       <div class="panel panel-default">
         <div class="row">
@@ -6,8 +6,8 @@
             <div class="panel panel-default">
               <div class="panel-heading">
                 <div class="row">
-                  <span class="title pad-left-right">Gifts</span>
-                </div>
+                  <span class="title pad-left-right mx-2">Gifts</span>
+                </div> -->
                 <!-- <div class="row">
                   <div class="input-group pull-left pad-left-right col-xs-7">
                     <input type="text" #searchBox (keyup)="search(searchBox.value)" class="form-control ml-2"
@@ -18,15 +18,33 @@
                     <a class="btn btn-success" [routerLink]="['new']">New Contact</a>
                   </div>
                 </div> -->
-              </div>
+              <!-- </div>
             </div>
           </div>
         </div>
-        <div class="panel-body">
+        <div class="panel-body"> -->
           <!-- <app-gift-item *ngFor="let giftItemElement of gifts | giftsFilter:term:'#searchBox.value'" [gift]="giftItemElement">
           </app-gift-item> -->
-          <app-gift-item></app-gift-item>
+          <!-- <app-gift-item></app-gift-item>
         </div>
       </div>
     </div>
   </div>
+  <p>gift list component</p> -->
+
+
+  
+<div class="row">
+  <div class="col-xs-12">
+    <a href="#" class="list-group-item clearfix" *ngFor="let gift of gifts">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading"><a href="{{ gift.url }}">{{ gift.name }}</a></h4>
+        <p class="list-group-item-text">{{ gift.price }}</p>
+        <p class="list-group-item-text">{{ gift.description }}</p>
+      </div>
+      <span class="pull-right">
+        <img [src]="gift.image" alt="{{ gift.name }}" class="img-responsive" style="max-height: 50px;">
+      </span>
+    </a>
+  </div>
+</div>

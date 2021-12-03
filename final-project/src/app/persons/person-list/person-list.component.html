@@ -1,17 +1,35 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="row pad-left-right">
-        <span class="pull-left title">People</span>
-        <a class="btn btn-success pull-right" routerLink="new">Add Person</a>
-      </div>
-    </div>
-    <div class="panel-body">
-      <div class="center-panel">
-        <cms-document-item 
-          *ngFor="let personElement of persons" 
-          [person]="personElement">
-        </cms-document-item>
-      </div>
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row pad-left-right">
+      <span class="pull-left title mx-2">People</span>
+      <a class="btn btn-danger pull-right mx-2" routerLink="new">Add Person</a>
     </div>
   </div>
-  
+  <div class="panel-body">
+    <div class="center-panel">
+      <cms-document-item *ngFor="let personElement of persons" [person]="personElement">
+      </cms-document-item>
+    </div>
+  </div>
+</div>
+<p>person list component</p> -->
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-danger">New Person</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <a href="#" class="list-group-item clearfix" *ngFor="let person of persons">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ person.name }}</h4>
+        <p class="list-group-item-text">{{ person.budget }}</p>
+      </div>
+      <span class="pull-right">
+        <img src="{{ person.image }}" alt="{{ person.name }}" class="img-responsive" style="max-height: 50px;">
+      </span>
+    </a>
+  </div>
+</div>

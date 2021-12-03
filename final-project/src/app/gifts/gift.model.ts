@@ -5,7 +5,6 @@ export class Gift {
         public description: string,
         public url: string,
         public image: string,
-        public price: string,
-        public children: Array<Gift>
+        public price: string
     ) {}
 }

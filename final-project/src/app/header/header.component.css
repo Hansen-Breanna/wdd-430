@@ -1,7 +1,15 @@
 nav {
-    background-color: red;
+    background-color: #dc3545;
 }
 
 nav a {
     color: white;
+}
+
+.click {
+    color: black;
+}
+
+.active a {
+    background-color: #ed99a1;
 }

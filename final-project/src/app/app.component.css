@@ -5,3 +5,7 @@ main {
     height: 93.5vh;
     width: 100vw;
 }
+
+.top-div {
+    padding-top: 30px;
+}

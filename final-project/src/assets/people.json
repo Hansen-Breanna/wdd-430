@@ -1,0 +1,23 @@
+{
+id: '1',
+name: 'Xbox One',
+description: 'Microsoft Xbox One 500GB with Original Controller.',
+url: 'https://www.gamestop.com/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-500gb-console-black-with-original-controller/101370.html?gclid=Cj0KCQiA15yNBhDTARIsAGnwe0XE-RQ-QulNQ8lLTF89j-_OmsBAo5pCqQAd64bLByP4cicxQFTk558aAqaxEALw_wcB&gclsrc=aw.ds',
+image: '../assets/images/xbox-one.jpg',
+price: '239.99'
+},
+{
+id: '2',
+name: 'Women's Snow Boots',
+description: 'Pacific Mountain Whiteout Women's Winter Boots',
+url: 'https://www.kohls.com/product/prd-2659861/pacific-mountain-whiteout-womens-winter-boots.jsp?skuid=39637069&CID=shopping15&utm_campaign=WOMENS%20BOOTS&utm_medium=CSE&utm_source=google&utm_product=39637069&utm_campaignid=9733267156&gclid=Cj0KCQiA15yNBhDTARIsAGnwe0XYFaqosXRS5mggS9BECMWZu9ciaxXecb8bRlDJ8E_xdUTSCx6M07MaAoyBEALw_wcB&gclsrc=aw.ds',
+image: '../assets/images/women-snow-boots.jpg',
+price: '100.00'
+},{
+id: '3',
+name: 'Home Gym',
+description: 'G4 Home Gym to get rid of Christmas cookie weight.',
+url: 'https://shop.lifefitness.com//products/g4-home-gym?variant=39899400372421&utm_source=google&utm_medium=shopping&utm_campaign=13613782051&utm_content=120754757901&utm_term=&gclid=Cj0KCQiA15yNBhDTARIsAGnwe0V23m6avTcNz0d6-S4Kpf6xTlBChL_Ve_kS9BCKCgd--S8qIxB-S1oaAt95EALw_wcB',
+image: '../assets/images/home-gym.jpg',
+price: '3,049.00'
+}

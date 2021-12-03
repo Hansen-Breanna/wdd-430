@@ -5,22 +5,22 @@ var express = require('express');
 var router = express.Router();
 module.exports = router; 
 
-// // get
-// router.get('/', (req, res, next) => {
-//     Persons.find()
-//       .then(documents => {
-//         res.status(200).json({
-//             message: "Documents fetched successfully!",
-//             documents: documents
-//         });
-//       })
-//       .catch(error => {
-//          res.status(500).json({
-//             message: 'An error occurred',
-//             error: error
-//           });
-//       });
-//  });
+// get
+router.get('/', (req, res, next) => {
+    Persons.find()
+      .then(documents => {
+        res.status(200).json({
+            message: "Persons fetched successfully!",
+            documents: documents
+        });
+      })
+      .catch(error => {
+         res.status(500).json({
+            message: 'An error occurred',
+            error: error
+          });
+      });
+ });
 
 // // add
 // router.post('/', (req, res, next) => {

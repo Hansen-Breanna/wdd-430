@@ -1,26 +1,21 @@
 <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
     <div class="panel-heading">
       <div class="row pad-all">
-        <h4 class="title margin-left-right">{{ person.name }}</h4>
-        <div class="row pull-right margin-left-right">
-          <a class="btn btn-info m-1" routerLink="edit">Edit</a>
-          <a class="btn btn-danger m-1" (click)="onDelete()">Delete</a>
+        <h4 class="title pull-left"><span class="label-value">{{ person.image }}</span>{{ person.name }}</h4>
+        <div class="row">
+          <a class="btn btn-info mx-1" routerLink="edit">Edit</a>
+          <a class="btn btn-danger mx-1" (click)="onDelete()">Delete</a>
         </div>
       </div>
     </div>
     <div class="panel-body">
       <div class="pad-left-right">
         <div class="row">
-          <label>Budget:&nbsp;</label>
-          <span class="label-value">{{ person.budget }}</span>
-        </div>
-        <br>
-        <div class="row">
-          <label>Image:&nbsp;</label>
-          <span class="label-value">{{ person.image }}</span>
+          <label>Gifts:&nbsp;</label>
+          <span class="label-value">List of gifts here</span>
         </div>
       </div>
     </div>
   </div>
   
-  
+  <p>person detail component</p>

@@ -1,0 +1,23 @@
+db.people.insertMany([
+{
+id: '1',
+name: 'Rudolph',
+budget: '150',
+image: 'https://icons.iconarchive.com/icons/stevelianardo/free-christmas-flat/128/rudolph-icon.png',
+group: [ObjectId("61a827b18fb34ce7c261ca8d")]
+},
+{
+id: '2',
+name: 'Santa',
+budget: '100',
+image: 'https://icons.iconarchive.com/icons/stevelianardo/free-christmas-flat/128/santa-claus-icon.png',
+group: [ObjectId("61a827bf8fb34ce7c261ca8e")]
+},
+{
+id: '3',
+name: 'Frosty',
+budget: '500',
+image: 'https://icons.iconarchive.com/icons/stevelianardo/free-christmas-flat/128/snowman-icon.png',
+group: [ObjectId("61a8fbf68fb34ce7c261ca8f")]
+},
+])
