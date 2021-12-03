@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Gift } from '../../gift.model';
 
 @Component({
   selector: 'app-gift-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gift-item.component.css']
 })
 export class GiftItemComponent implements OnInit {
+  @Input() gift: Gift;
+  @Input() index: number;
 
   constructor() { }
 
