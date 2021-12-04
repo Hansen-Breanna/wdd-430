@@ -14,18 +14,6 @@ const giftRoutes = require('./server/routes/gifts');
 
 // ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ... 
 
-// establish a connection to the mongo database
-mongoose.connect('mongodb://localhost:27017/app',
-   { useNewUrlParser: true }, (err, res) => {
-      if (err) {
-         console.log('Connection failed: ' + err);
-      }
-      else {
-         console.log('Connected to database!');
-      }
-   }
-);
-
 var app = express(); // create an instance of express
 
 // Tell express to use the following parsers for POST data
@@ -60,11 +48,27 @@ app.use('/', index);
 app.use('/people', personRoutes);
 app.use('/gifts', giftRoutes);
 
+// establish a connection to the mongo database
+mongoose.connect('mongodb://localhost:27017/finalProject',
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
+
+
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 
 // Tell express to map all other non-defined routes back to the index page
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/app/index.html'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist/app/index.html'));
+// });
+app.use(function(req, res, next) {
+  res.render("index");
 });
 
 // Define the port address and tell express to use this port

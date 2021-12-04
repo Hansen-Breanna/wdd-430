@@ -15,6 +15,8 @@ import { GiftEditComponent } from './gifts/gift-edit/gift-edit.component';
 import { GiftListComponent } from './gifts/gift-list/gift-list.component';
 import { GiftItemComponent } from './gifts/gift-list/gift-item/gift-item.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

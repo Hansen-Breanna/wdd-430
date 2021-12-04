@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Person } from '../person.model';
 import { PersonService } from '../person.service';
@@ -10,9 +10,8 @@ import { PersonService } from '../person.service';
   styleUrls: ['./person-detail.component.css']
 })
 export class PersonDetailComponent implements OnInit {
-  person: Person;
+  @Input() person: Person;
   id: string;
-  nativeWindow: any;
 
   constructor(
     private personService: PersonService, 
@@ -29,7 +28,8 @@ export class PersonDetailComponent implements OnInit {
   }
 
   onDelete() {
+    console.log("person deleted");
     // this.personService.deletePerson(this.person);
-    this.router.navigate(['persons']), {relativeTo: this.route}; 
+    this.router.navigate(['people']), {relativeTo: this.route}; 
   }
 }

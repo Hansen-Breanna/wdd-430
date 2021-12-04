@@ -4,7 +4,12 @@ id: '1',
 name: 'Rudolph',
 budget: '150',
 image: 'https://icons.iconarchive.com/icons/stevelianardo/free-christmas-flat/128/rudolph-icon.png',
-group: [ObjectId("61a827b18fb34ce7c261ca8d")]
+group: [{id: '1',
+name: 'Xbox One',
+description: 'Microsoft Xbox One 500GB with Original Controller.',
+url: 'https://www.gamestop.com/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-500gb-console-black-with-original-controller/101370.html?gclid=Cj0KCQiA15yNBhDTARIsAGnwe0XE-RQ-QulNQ8lLTF89j-_OmsBAo5pCqQAd64bLByP4cicxQFTk558aAqaxEALw_wcB&gclsrc=aw.ds',
+image: '../assets/images/xbox-one.jpg',
+price: '239.99'}]
 },
 {
 id: '2',

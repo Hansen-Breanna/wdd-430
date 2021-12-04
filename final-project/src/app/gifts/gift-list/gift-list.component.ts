@@ -15,7 +15,7 @@ export class GiftListComponent implements OnInit {
     '../assets/images/xbox-one.JPG',
     '239.99')
   ];
-  selectedGiftEvent: 
+   
   constructor() { }
 
   ngOnInit(): void {

@@ -5,14 +5,13 @@ var express = require('express');
 var router = express.Router();
 module.exports = router; 
 
-
 // get
 router.get('/', (req, res, next) => {
-    Gifts.find()
-      .then(documents => {
+    Gift.find()
+      .then(gifts => {
         res.status(200).json({
             message: "Gifts fetched successfully!",
-            documents: documents
+            gifts: gifts
         });
       })
       .catch(error => {
@@ -25,20 +24,22 @@ router.get('/', (req, res, next) => {
 
 // // add
 // router.post('/', (req, res, next) => {
-//     const maxDocumentId = sequenceGenerator.nextId("documents");
+//     const maxGiftId = sequenceGenerator.nextId("gifts");
   
-//     const document = new Document({
-//       id: maxDocumentId,
+//     const gift = new Gift({
+//       id: maxGiftId,
 //       name: req.body.name,
 //       description: req.body.description,
-//       url: req.body.url
+//       url: req.body.url,
+//       image: req.body.image,
+//       price: req.body.price
 //     });
   
-//     document.save()
-//       .then(createdDocument => {
+//     gift.save()
+//       .then(createdGift => {
 //         res.status(201).json({
-//           message: 'Document added successfully',
-//           document: createdDocument
+//           message: 'Gift added successfully',
+//           gift: createdGift
 //         });
 //       })
 //       .catch(error => {
@@ -51,16 +52,18 @@ router.get('/', (req, res, next) => {
 
 // // update  
 // router.put('/:id', (req, res, next) => {
-//     Document.findOne({ id: req.params.id })
-//       .then(document => {
-//         document.name = req.body.name;
-//         document.description = req.body.description;
-//         document.url = req.body.url;
+//     Gift.findOne({ id: req.params.id })
+//       .then(gift => {
+//         gift.name = req.body.name;
+//         gift.description = req.body.description;
+//         gift.url =  req.body.url;
+//         gift.image = req.body.image;
+//         gift.price = req.body.price;
   
-//         Document.updateOne({ id: req.params.id }, document)
+//         Gift.updateOne({ id: req.params.id }, gift)
 //           .then(result => {
 //             res.status(204).json({
-//               message: 'Document updated successfully'
+//               message: 'gift updated successfully'
 //             })
 //           })
 //           .catch(error => {
@@ -72,19 +75,19 @@ router.get('/', (req, res, next) => {
 //       })
 //       .catch(error => {
 //         res.status(500).json({
-//           message: 'Document not found.',
-//           error: { document: 'Document not found'}
+//           message: 'Gift not found.',
+//           error: { gift: 'Gift not found'}
 //         });
 //       });
 //   });
   
 // router.delete("/:id", (req, res, next) => {
-//     Document.findOne({ id: req.params.id })
-//       .then(document => {
-//         Document.deleteOne({ id: req.params.id })
+//     Gift.findOne({ id: req.params.id })
+//       .then(gift => {
+//         gift.deleteOne({ id: req.params.id })
 //           .then(result => {
 //             res.status(204).json({
-//               message: "Document deleted successfully"
+//               message: "Gift deleted successfully"
 //             });
 //           })
 //           .catch(error => {
@@ -96,8 +99,8 @@ router.get('/', (req, res, next) => {
 //       })
 //       .catch(error => {
 //         res.status(500).json({
-//           message: 'Document not found.',
-//           error: { document: 'Document not found'}
+//           message: 'Gift not found.',
+//           error: { gift: 'Gift not found'}
 //         });
 //       });
 //   });

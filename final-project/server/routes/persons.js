@@ -1,5 +1,6 @@
 const sequenceGenerator = require('./sequenceGenerator');
-const Person = require('../models/perons');
+const Person = require('../models/persons');
+const Gift = require('../models/gift');
 
 var express = require('express');
 var router = express.Router();
@@ -7,11 +8,11 @@ module.exports = router;
 
 // get
 router.get('/', (req, res, next) => {
-    Persons.find()
-      .then(documents => {
+    Person.find()
+      .then(persons => {
         res.status(200).json({
             message: "Persons fetched successfully!",
-            documents: documents
+            persons: persons
         });
       })
       .catch(error => {

@@ -8,11 +8,10 @@ import { Person } from '../../person.model';
 })
 export class PersonItemComponent implements OnInit {
   @Input() person: Person;
-  @Input() index: number;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
+

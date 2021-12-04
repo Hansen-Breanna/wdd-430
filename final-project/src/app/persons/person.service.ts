@@ -12,31 +12,31 @@ export class PersonService {
   personListChangedEvent = new Subject<Person[]>();
   maxPersonId: number;
 
-  // constructor(private http: HttpClient) {
-  //   this.http.get<Person[]>('http://localhost:3000/people')
-  //     .subscribe(
-  //       // success method
-  //       (persons: Person[]) => {
-  //         this.persons = persons;
-  //         this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
-  //         console.log(persons);
-  //         this.maxPersonId = this.getMaxId();
-  //         this.persons.sort((a, b) => {
-  //           if (a.name.toLowerCase() > b.name.toLowerCase()) {
-  //             return 1;
-  //           } else {
-  //             return -1;
-  //           }
-  //         });//sort the list of persons
-  //         var personsListClone = this.persons.slice(); // personsListClone = persons.slice()
-  //         this.personListChangedEvent.next(personsListClone);//emit the next person list change event
-  //         this.maxPersonId = this.getMaxId();
-  //       },
-  //       // error method
-  //       (error: any) => {
-  //         console.log(error.message); //print the error to the console
-  //       });
-  // }
+  constructor(private http: HttpClient) {
+    this.http.get<Person[]>('http://localhost:3000/people')
+      .subscribe(
+        // success method
+        (persons: Person[]) => {
+          this.persons = persons;
+          this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
+          console.log("from person service" + JSON.stringify(persons));
+          this.maxPersonId = this.getMaxId();
+          this.persons.sort((a, b) => {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });//sort the list of persons
+          var personsListClone = this.persons.slice(); // personsListClone = persons.slice()
+          this.personListChangedEvent.next(personsListClone);//emit the next person list change event
+          this.maxPersonId = this.getMaxId();
+        },
+        // error method
+        (error: any) => {
+          console.log(error.message); //print the error to the console
+        });
+  }
 
   getPersons(): Person[] {
     return this.persons.slice();

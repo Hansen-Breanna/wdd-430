@@ -6,8 +6,7 @@ var giftSchema = mongoose.Schema({
     description: { type: String },
     url: { type: String },
     image: { type: String },
-    price: { type: String },
-    children:  [{ type: mongoose.Schema.Types.String, ref: 'Gift' }]
+    price: { type: String }
 });
 
 module.exports = mongoose.model('Gift', giftSchema);

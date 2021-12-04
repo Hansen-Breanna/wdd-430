@@ -1,6 +1,6 @@
 var Sequence = require('../models/sequence');
 
-var maxPersonId;
+var maxPeopleId;
 var maxGiftId;
 var sequenceId = null;
 
@@ -14,9 +14,14 @@ function SequenceGenerator() {
           error: err
         });
       }
-
+      console.log(sequence);
+      if(sequence==null){
+        console.log("the sequence is null");
+      } else {
+        console.log("it worked");
+      }
       sequenceId = sequence._id;
-      maxPersonId = sequence.maxPersonId;
+      maxPeopleId = sequence.maxPeopleId;
       maxGiftId = sequence.maxGiftId;
     });
 }
@@ -27,10 +32,10 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
   var nextId;
 
   switch (collectionType) {
-    case 'persons':
-      maxPersonId++;
-      updateObject = {maxPersonId: maxPersonId};
-      nextId = maxPersonId;
+    case 'people':
+      maxPeopleId++;
+      updateObject = {maxPeopleId: maxPeopleId};
+      nextId = maxPeopleId;
       break;
     case 'gifts':
       maxGiftId++;
