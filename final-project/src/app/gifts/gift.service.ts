@@ -26,23 +26,19 @@ export class GiftService {
             } else {
               return -1;
             }
-          });//sort the list of gifts
-          var giftsListClone = this.gifts.slice(); // giftsListClone = gifts.slice()
-          console.log(giftsListClone);
-          this.giftListChangedEvent.next(giftsListClone);//emit the next gift list change event
+          });
+          var giftsListClone = this.gifts.slice(); 
+          this.giftListChangedEvent.next(giftsListClone);
           this.maxGiftId = this.getMaxId();
         },
         // error method
         (error: any) => {
-          console.log(error.message); //print the error to the console
+          console.log(error.message); 
         });
   }
 
   getGiftsFromDB() {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    
-    this.http.get<Gift[]>('http://localhost:3000/gifts',
-      { headers: headers })
+    this.http.get<Gift[]>('http://localhost:3000/gifts')
     .subscribe(
       // success method
       (gifts: Gift[]) => {
@@ -55,14 +51,14 @@ export class GiftService {
           } else {
             return -1;
           }
-        });//sort the list of gifts
-        var giftsListClone = this.gifts.slice(); // giftsListClone = gifts.slice()
-        this.giftListChangedEvent.next(giftsListClone);//emit the next gift list change event
+        });
+        var giftsListClone = this.gifts.slice(); 
+        this.giftListChangedEvent.next(giftsListClone);
         this.maxGiftId = this.getMaxId();
       },
       // error method
       (error: any) => {
-        console.log(error.message); //print the error to the console
+        console.log(error.message); 
       });
   }
 

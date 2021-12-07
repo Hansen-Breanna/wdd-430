@@ -44,7 +44,6 @@ export class PersonService {
       (persons: Person[]) => {
         this.persons = persons;
         this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
-        console.log("from person service" + JSON.stringify(persons));
         this.maxPersonId = this.getMaxId();
         this.persons.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
