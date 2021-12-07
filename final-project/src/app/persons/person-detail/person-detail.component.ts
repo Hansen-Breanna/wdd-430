@@ -23,6 +23,7 @@ export class PersonDetailComponent implements OnInit {
       (params: Params) => {
         this.id = params['id'];
         this.person = this.personService.getPerson(this.id);
+        console.log(this.id);
       }
     );
   }

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Person } from '../../persons/person.model';
 import { Gift } from '../gift.model';
+import { Subscription } from 'rxjs';
+import { PersonService } from '../../persons/person.service';
+import { GiftService } from 'src/app/gifts/gift.service';
 
 @Component({
   selector: 'app-gift-list',
@@ -7,18 +11,28 @@ import { Gift } from '../gift.model';
   styleUrls: ['./gift-list.component.css']
 })
 export class GiftListComponent implements OnInit {
-  gifts: Gift[] = [
-    new Gift('1',
-    'Xbox One',
-    'Microsoft Xbox One 500GB with Original Controller.',
-    'https://www.gamestop.com/consoles-hardware/xbox-one/consoles/products/microsoft-xbox-one-500gb-console-black-with-original-controller/101370.html?gclid=Cj0KCQiA15yNBhDTARIsAGnwe0XE-RQ-QulNQ8lLTF89j-_OmsBAo5pCqQAd64bLByP4cicxQFTk558aAqaxEALw_wcB&gclsrc=aw.ds',
-    '../assets/images/xbox-one.JPG',
-    '239.99')
-  ];
-   
-  constructor() { }
+  gifts: Gift[] = [];
+  private subscription: Subscription;
+  term: string;
 
-  ngOnInit(): void {
+  constructor(private giftService: GiftService, private personService: PersonService) { }
+
+  async ngOnInit() {
+    this.gifts = this.giftService.getGifts();
+    await this.personService.getPersonsFromDB();
+    this.subscription = this.giftService.giftListChangedEvent.subscribe(
+      (giftsList: Gift[]) => {
+        this.gifts = giftsList;
+      }
+    )
   }
 
+  search(value: string) {
+    this.term = value;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
+

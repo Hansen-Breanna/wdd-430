@@ -28,6 +28,7 @@ export class GiftService {
             }
           });//sort the list of gifts
           var giftsListClone = this.gifts.slice(); // giftsListClone = gifts.slice()
+          console.log(giftsListClone);
           this.giftListChangedEvent.next(giftsListClone);//emit the next gift list change event
           this.maxGiftId = this.getMaxId();
         },
@@ -38,7 +39,10 @@ export class GiftService {
   }
 
   getGiftsFromDB() {
-    this.http.get<Gift[]>('http://localhost:3000/gifts')
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    
+    this.http.get<Gift[]>('http://localhost:3000/gifts',
+      { headers: headers })
     .subscribe(
       // success method
       (gifts: Gift[]) => {

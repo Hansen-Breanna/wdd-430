@@ -24,29 +24,26 @@ export class PersonEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe( //route.subscribe(
-      (params: Params) => { //(params: Params) =>
-        var id = params.id;//`${params.id}`; //id = value of id parameter in params list
-        if (params.id == undefined || null) {//if id parameter is undefined or null then
-          console.log("new person");
-          this.editMode = false;//editMode = false
-          return; //return
-        }//endif
+    this.route.params.subscribe(
+      (params: Params) => {
+        console.log(params);
+        var id = params.id;
+        // console.log(this.originalPerson.group);
+        if (params.id == undefined || null) {
+          this.editMode = false;
+          return;
+        }
         this.originalPerson = this.personService.getPerson(id);
-        //originalPerson = getPerson(id)
 
         if (this.originalPerson == undefined || null) {
-          // if originalPerson is undefined or null then
-          return;//return
-        }//endif
-        this.editMode = true;//set editMode to true
+          return;
+        }
+        this.editMode = true;
         this.person = JSON.parse(JSON.stringify(this.originalPerson));
-        //Person = clone originalPerson
 
-        if (this.person.group) {//if the person has a group then
-          this.groupGifts = JSON.parse(JSON.stringify(this.originalPerson.group));
-          //groupGifts = clone the person’s group
-        }//endif
+        if (this.person.group) {
+          this.groupGifts = JSON.parse(JSON.stringify(this.person.group));
+        }
       });
   }
 
@@ -60,7 +57,7 @@ export class PersonEditComponent implements OnInit {
     if (this.editMode) {
       // this.personService.updatePerson(this.originalPerson, newPerson);
     } else {
-      // this.personService.addPerson(newPerson);
+      this.personService.addPerson(newPerson);
     }
     this.editMode = false;
     this.router.navigate(['/people']), { relativeTo: this.route };

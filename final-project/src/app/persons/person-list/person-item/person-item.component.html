@@ -5,10 +5,10 @@
 
   <a href="#" class="list-group-item clearfix" routerLink="{{ person.id }}" routerLinkActive="active">
     <div class="pull-left">
-      <h4 class="list-group-item-heading">{{ person.name }}</h4>
+      <span class="pull-left">
+        <img [src]=person.image alt="{{ person.name }}" class="img-responsive" style="max-height: 50px;">
+      </span>
+      <h4 class="list-group-item-heading pull-right mx-2 pt-3">{{ person.name }}</h4>
     </div>
-    <span class="pull-right">
-      <img [src]=person.image alt="{{ person.name }}" class="img-responsive" style="max-height: 50px;">
-    </span>
   </a>
   

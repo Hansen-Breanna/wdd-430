@@ -5,7 +5,7 @@ var personSchema = mongoose.Schema({
     name: { type: String },
     budget: { type: String },
     image: { type: String },
-    group:  [{ type: mongoose.Schema.Types.String, ref: 'Gift' }]
+    group:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gift' }]
 });
 
-module.exports = mongoose.model('People', personSchema);
+module.exports = mongoose.model('Person', personSchema);

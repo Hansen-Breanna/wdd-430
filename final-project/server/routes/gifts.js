@@ -9,6 +9,7 @@ module.exports = router;
 router.get('/', (req, res, next) => {
     Gift.find()
       .then(gifts => {
+          console.log(gifts);
         res.status(200).json({
             message: "Gifts fetched successfully!",
             gifts: gifts

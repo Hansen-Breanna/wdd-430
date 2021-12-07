@@ -1,1 +1,48 @@
-<p>gift-detail works!</p>
+<!-- <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
+    <div class="panel-heading">
+      <div class="row pad-all">
+        <h4 class="title pull-left"><span class="label-value">{{ gift.image }}</span>{{ gift.name }}</h4>
+        <div class="row">
+          <a class="btn btn-info mx-1" routerLink="edit">Edit</a>
+          <a class="btn btn-danger mx-1" (click)="onDelete()">Delete</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="pad-left-right">
+        <div class="row">
+          <label>Gifts:&nbsp;</label>
+          <span class="label-value">List of gifts here</span>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2>{{ gift.name }}</h2>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="pull-right">
+              <a class="btn btn-primary mx-1" routerLink="edit">Edit</a>
+              <a class="btn btn-danger mx-1" (click)="onDelete()">Delete</a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="pull-left">
+          <img [src]=gift.image alt="{{ gift.name }}" class="img-responsive" style="max-height: 50px;">
+        </div>
+        <ul class="list-unstyled">
+          <li><span class="font-weight-bold">Price: </span>${{ gift.price }}</li>
+          <li><span class="font-weight-bold">Description: </span>{{ gift.description }}</li>
+          <li><span class="font-weight-bold text-wrap">URL: </span>{{ gift.url }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
