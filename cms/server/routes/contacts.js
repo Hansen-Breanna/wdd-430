@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
       id: maxContactId,
       name: req.body.name,
       email: req.body.email,
-      phone:    req.body.phone,
+      phone: req.body.phone,
       imageUrl: req.body.imageUrl,
       group: req.body.group
     });

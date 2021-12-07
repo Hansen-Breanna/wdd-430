@@ -32,7 +32,7 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
   var nextId;
 
   switch (collectionType) {
-    case 'people':
+    case 'persons':
       maxPeopleId++;
       updateObject = {maxPeopleId: maxPeopleId};
       nextId = maxPeopleId;

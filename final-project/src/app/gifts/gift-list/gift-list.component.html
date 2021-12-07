@@ -20,6 +20,7 @@
           </div>
         </div>
         <div class="panel-body">
+          <p class="icon-headings">Bought&nbsp;&nbsp;Wrapped</p>
           <app-gift-item *ngFor="let giftItemElement of gifts | giftsFilter:term:'#searchBox.value'" [gift]="giftItemElement">
           </app-gift-item>
         </div>

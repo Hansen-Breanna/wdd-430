@@ -20,6 +20,5 @@ export class GiftsComponent implements OnInit {
       }
     )
   }
-
 }
 

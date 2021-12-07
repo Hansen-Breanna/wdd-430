@@ -2,3 +2,9 @@
     font-size: 2.5rem;
     font-weight: bold;
   }
+
+  .icon-headings {
+    font-weight: bold;
+    padding-right: 25px;
+    text-align: right;
+  }

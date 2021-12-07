@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var giftSchema = mongoose.Schema({
     id: { type: String, required: true},
+    recipient: { type: String, required: true},
     name: { type: String },
     description: { type: String },
     url: { type: String },

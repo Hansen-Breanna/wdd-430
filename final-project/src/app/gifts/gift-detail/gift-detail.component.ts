@@ -14,6 +14,7 @@ export class GiftDetailComponent implements OnInit {
   id: string;
   giftUrl = '';
   nativeWindow: any;
+  recipient: string = "";
 
   constructor(
     private giftService: GiftService, 
@@ -23,10 +24,9 @@ export class GiftDetailComponent implements OnInit {
       this.nativeWindow = windRefService.getNativeWindow();
      }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.nativeWindow = this.windRefService.getNativeWindow();
         this.id = params['id'];
         this.gift = this.giftService.getGift(this.id);
         this.giftUrl = this.gift.url;

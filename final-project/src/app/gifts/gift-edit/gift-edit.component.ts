@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Person } from '../../persons/person.model';
+import { PersonService } from 'src/app/persons/person.service';
 import { GiftService } from '../../gifts/gift.service';
 import { Gift } from '../../gifts/gift.model';
 
@@ -13,7 +14,7 @@ import { Gift } from '../../gifts/gift.model';
 export class GiftEditComponent implements OnInit {
   originalGift: Gift;
   gift: Gift;
-  person: Person;
+  recipient: Person;
   editMode: boolean = false;
   id: string;
 
@@ -48,13 +49,14 @@ export class GiftEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    const newGift = new Gift(value.id, value.name, value.description, value.url, value.image, value.price);
-    if (this.editMode) {
-      this.giftService.updateGift(this.originalGift, newGift);
-    } else {
-      this.giftService.addGift(newGift);
-    }
-    this.editMode = false;
-    this.router.navigate(['/gifts']), { relativeTo: this.route };
+    const newGift = new Gift(value.id, value.recipient, value.name, value.description, value.url, value.image, value.price);
+    console.log(this.recipient["id"] +"person add gift");
+  //   if (this.editMode) {
+  //     this.giftService.updateGift(this.originalGift, newGift);
+  //   } else {
+  //     this.giftService.addGift(newGift);
+  //   }
+  //   this.editMode = false;
+  //   this.router.navigate(['/gifts']), { relativeTo: this.route };
   }
 }

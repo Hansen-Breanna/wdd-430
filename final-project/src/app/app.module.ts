@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { GiftsFilterPipe } from './gifts/gifts-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     GiftEditComponent,
     GiftListComponent,
     GiftItemComponent,
-    GiftsFilterPipe
+    GiftsFilterPipe,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,

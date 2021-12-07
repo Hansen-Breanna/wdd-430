@@ -13,7 +13,8 @@ const appRoutes: Routes = [
     { path: 'people', component: PersonsComponent, children: [
         { path: 'new', component: PersonEditComponent},
         { path: ':id', component: PersonDetailComponent},
-        { path: ':id/edit', component: PersonEditComponent}
+        { path: ':id/edit', component: PersonEditComponent},
+        { path: ':id/add', component: GiftEditComponent},
     ]},
     { path: 'gifts', component: GiftsComponent, children: [
         { path: 'new', component: GiftEditComponent},

@@ -55,7 +55,7 @@ export class PersonEditComponent implements OnInit {
     const value = form.value;
     const newPerson = new Person(value.id, value.name, value.budget, value.image, this.groupGifts);
     if (this.editMode) {
-      // this.personService.updatePerson(this.originalPerson, newPerson);
+      this.personService.updatePerson(this.originalPerson, newPerson);
     } else {
       this.personService.addPerson(newPerson);
     }

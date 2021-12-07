@@ -30,6 +30,7 @@
                 <img [src]=person.image alt="{{ person.name }}" class="img-responsive" style="max-height: 50px;">
               </div>
               <span class="pull-right">
+                <a class="btn btn-success mx-1" routerLink="add">Add Gift</a> <!-- How to route to gift edit? -->
                 <a class="btn btn-primary mx-1" routerLink="edit">Edit</a>
                 <a class="btn btn-danger mx-1" (click)="onDelete()">Delete</a> 
               </span>
