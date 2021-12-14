@@ -50,24 +50,6 @@
               #image="ngModel">
           </div>
         </div>
-        
-        <div class="row">
-          <div class="form-group ml-2">
-            <label for="groupList ml-2">Gifts:</label>
-  
-            <div class="row" id="groupList"
-                style="min-height: 3rem;">
-  
-              <div *ngFor="let gift of groupGifts; let i = index">
-                <div>
-                  <app-gift-item class="col-sm-10" [gift]="gift"></app-gift-item>
-                  <button class="btn btn-danger col-sm-2 deleteButton" (click)="onRemoveItem(i)">X</button>
-                </div>
-              </div>
-            </div>
-  
-          </div>
-        </div>
   
         <div class="alert alert-danger" *ngIf="(!name.valid && name.untouched)">
             <p>The Name field is required.</p>

@@ -1,5 +1,6 @@
 // Get dependencies
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var http = require('http');
 var bodyParser = require('body-parser');
@@ -26,20 +27,22 @@ app.use(cookieParser());
 app.use(logger('dev')); // Tell express to use the Morgan logger
 
 // Add support for CORS
+
+app.options('*', cors());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  );
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PATCH, PUT, DELETE, OPTIONS'
-  );
+  // res.setHeader(
+  //   'Access-Control-Allow-Headers',
+  //   'Origin, X-Requested-With, Content-Type, Accept'
+  // );  
+  // res.setHeader(
+  //   'Access-Control-Allow-Methods',
+  //   'GET, POST, PATCH, PUT, DELETE, OPTIONS'
+  // );
   next();
 });
 
-// Tell express to use the specified director as the
+// Tell express to use the specified directory as the
 // root directory for your web site
 app.use(express.static(path.join(__dirname, 'dist/app')));
 

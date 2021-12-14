@@ -16,26 +16,27 @@ export class GiftEditComponent implements OnInit {
   gift: Gift;
   recipient: Person;
   editMode: boolean = false;
-  id: string;
+  personId: string;
 
   constructor(
     private giftService: GiftService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private personService: PersonService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe( 
       (params: Params) => {
-        var id = params.id;
-        if (params.id == undefined || null) {
-          console.log("new gift");
+        this.personId = params.personId;
+        var giftId = params.giftId;
+        if (params.giftId === undefined || params.giftId === null) {
           this.editMode = false;
           return; 
         }
-        this.originalGift = this.giftService.getGift(id);
+        this.originalGift = this.giftService.getGift(giftId);
 
-        if (this.originalGift == undefined || null) {
+        if (this.originalGift === undefined || this.originalGift === null) {
           return;
         }
         this.editMode = true;
@@ -49,14 +50,14 @@ export class GiftEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const value = form.value;
-    const newGift = new Gift(value.id, value.recipient, value.name, value.description, value.url, value.image, value.price);
-    console.log(this.recipient["id"] +"person add gift");
-  //   if (this.editMode) {
-  //     this.giftService.updateGift(this.originalGift, newGift);
-  //   } else {
-  //     this.giftService.addGift(newGift);
-  //   }
-  //   this.editMode = false;
-  //   this.router.navigate(['/gifts']), { relativeTo: this.route };
+    const newGift = new Gift(value.id, this.editMode ? this.originalGift.recipient : this.personId, value.name, value.description, value.url, value.image, value.price);
+    if (this.editMode) {
+      this.giftService.updateGift(this.originalGift, newGift);
+    } else {
+      //add ObjectId to person.group
+      this.giftService.addGift(newGift);
+    }
+    this.editMode = false;
+    this.router.navigate(['/gifts']), { relativeTo: this.route };
   }
 }

@@ -2,8 +2,9 @@ main {
     background: url("../assets/images/christmas-gift-background.jpg") repeat top right fixed; 
     background-size: cover;
     margin: -20px 0 0 0;
-    height: 93.5vh;
+    min-height: 93.5vh;
     width: 100vw;
+    margin-top: 40px;
 }
 
 .top-div {

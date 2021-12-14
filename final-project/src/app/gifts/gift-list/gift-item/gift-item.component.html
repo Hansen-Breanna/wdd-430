@@ -1,11 +1,12 @@
   <a href="#" class="list-group-item clearfix" routerLink="{{ gift.id }}" routerLinkActive="active">
     <div class="col-xs-12">
-      <div class="col-xs-2">
-        <img src="{{ gift.url }}" alt="{{ gift.name }}" class="img-responsive"
+      <div class="col-xs-4">
+        <img src="{{gift.image}}" alt="{{ gift.name }}" class="img-responsive"
           style="max-height: 100px;">
       </div>
       <div class="col-xs-7">
         <h4 class="list-group-item-heading">{{ gift.name }}</h4>
+        <p>For: {{ giftRecipient }}</p>
       </div>
     </div>
   </a>

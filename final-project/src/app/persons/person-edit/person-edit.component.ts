@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Person } from '../person.model';
 import { PersonService } from '../person.service';
 import { Gift } from '../../gifts/gift.model';
+import { GiftService } from 'src/app/gifts/gift.service';
 
 @Component({
   selector: 'app-person-edit',
@@ -19,6 +20,7 @@ export class PersonEditComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
+    private giftService: GiftService,    
     private router: Router,
     private route: ActivatedRoute) {
   }
@@ -27,9 +29,9 @@ export class PersonEditComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         console.log(params);
-        var id = params.id;
+        var id = params.personId;
         // console.log(this.originalPerson.group);
-        if (params.id == undefined || null) {
+        if (id == undefined || null) {
           this.editMode = false;
           return;
         }
@@ -42,7 +44,7 @@ export class PersonEditComponent implements OnInit {
         this.person = JSON.parse(JSON.stringify(this.originalPerson));
 
         if (this.person.group) {
-          this.groupGifts = JSON.parse(JSON.stringify(this.person.group));
+          this.groupGifts = this.giftService.getGifts().filter((item) => item['recipient'] === this.id);      
         }
       });
   }
@@ -61,22 +63,6 @@ export class PersonEditComponent implements OnInit {
     }
     this.editMode = false;
     this.router.navigate(['/people']), { relativeTo: this.route };
-  }
-
-
-  isInvalidPerson(newPerson: Person) {
-    if (!newPerson) {// newPerson has no value
-      return true;
-    }
-    if (this.person && newPerson.id === this.person.id) {
-      return true;
-    }
-    for (let i = 0; i < this.groupGifts.length; i++) {
-      if (newPerson.id === this.groupGifts[i].id) {
-        return true;
-      }
-    }
-    return false;
   }
 
   onRemoveItem(index: number) {

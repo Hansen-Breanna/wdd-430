@@ -12,14 +12,15 @@ const appRoutes: Routes = [
     { path: '', redirectTo: '/people', pathMatch: 'full'},
     { path: 'people', component: PersonsComponent, children: [
         { path: 'new', component: PersonEditComponent},
-        { path: ':id', component: PersonDetailComponent},
-        { path: ':id/edit', component: PersonEditComponent},
-        { path: ':id/add', component: GiftEditComponent},
+        { path: ':personId', component: PersonDetailComponent},
+        { path: ':personId/edit', component: PersonEditComponent},
+        { path: ':personId/add', component: GiftEditComponent},
+        { path: ':giftId/', component: GiftDetailComponent},
     ]},
     { path: 'gifts', component: GiftsComponent, children: [
         { path: 'new', component: GiftEditComponent},
-        { path: ':id', component: GiftDetailComponent},
-        { path: ':id/edit', component: GiftEditComponent}
+        { path: ':giftId', component: GiftDetailComponent},
+        { path: ':giftId/edit', component: GiftEditComponent}
     ]},
 ];
 

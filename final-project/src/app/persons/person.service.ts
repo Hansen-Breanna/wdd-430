@@ -2,6 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Person } from './person.model';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Gift } from '../gifts/gift.model';
+import { GiftService } from '../gifts/gift.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,15 @@ export class PersonService {
   personListChangedEvent = new Subject<Person[]>();
   maxPersonId: number;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private giftService: GiftService) {
     this.http.get<Person[]>('http://localhost:3000/people')
       .subscribe(
         // success method
         (persons: Person[]) => {
+          console.log("getting the persons");
+          console.log(persons);
           this.persons = persons;
+          // this.giftService.getGifts();
           this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
           this.maxPersonId = this.getMaxId();
           this.persons.sort((a, b) => {
@@ -43,6 +48,7 @@ export class PersonService {
       // success method
       (persons: Person[]) => {
         this.persons = persons;
+        // this.giftService.getGifts();
         this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
         this.maxPersonId = this.getMaxId();
         this.persons.sort((a, b) => {
@@ -67,7 +73,7 @@ export class PersonService {
   }
 
   getPerson(id: string): Person {
-    for (let person of this.persons) {
+    for (let person of this.persons) {      
       if (person.id == id) {
         return person;
       }
@@ -93,14 +99,13 @@ export class PersonService {
     // make sure id of the new Person is empty
     person.id = '';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(person);
+    console.log("in addPerson function: " + JSON.stringify(person));
     // add to database
-    this.http.post<{ message: string, person: Person }>('http://localhost:3000/persons',
+    this.http.post<{ message: string, person: Person }>('http://localhost:3000/people',
       person,
       { headers: headers })
       .subscribe(
         (responseData) => {
-          console.log(responseData);
           // add new person to persons
           this.persons.push(responseData.person);
           this.sortAndSend();
@@ -132,7 +137,7 @@ export class PersonService {
     // newPerson._id = originalPerson._id;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // update database
-    this.http.put('http://localhost:3000/persons/' + originalPerson.id,
+    this.http.put('http://localhost:3000/people/' + originalPerson.id,
       newPerson, { headers: headers })
       .subscribe(
         (response: Response) => {
@@ -142,37 +147,22 @@ export class PersonService {
       );
   }
 
-  // // deletePerson(person: Person) {
-  // //   if (person == undefined || null) {// if person is undefined or null then
-  // //     return; //  return
-  // //   }// endIf
-
-  // //   var pos = this.persons.indexOf(person);// pos = persons.indexOf(person)
-  // //   if (pos < 0) {// if pos < 0 then
-  // //     return;//  return
-  // //   }// endIf
-
-  // //   this.persons.splice(pos, 1); // persons.splice(pos, 1)
-  // //   this.storePersons();
-  // // }
-
   deletePerson(person: Person) {
     if (!person) {
       return;
     }
-    const pos = this.persons.findIndex(d => d.id === person.id);
+    const pos = this.persons.findIndex(p => p.id === person.id);
     if (pos < 0) {
       return;
     }
     // delete from database
-    this.http.delete('http://localhost:3000/persons/' + person.id)
+    this.http.delete('http://localhost:3000/people/' + person.id)
       .subscribe(
         (response: Response) => {
-          const updatedPersons = this.persons.filter(d => d.id !== person.id);
-          this.persons = updatedPersons;
+          // delete all gifts for person?
           this.persons.splice(pos, 1);
           this.personListChangedEvent.next([...this.persons]);
-          // this.sortAndSend();
+          this.sortAndSend();
         }
       );
   }
@@ -180,7 +170,7 @@ export class PersonService {
   storePersons() {
     const persons = JSON.stringify(this.getPersons());
     //Create a new HttpHeaders object that sets the Content-Type of the HTTP request to application/json.
-    this.http.put('http://localhost:3000/persons', persons,
+    this.http.put('http://localhost:3000/people', persons,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }

@@ -5,8 +5,7 @@ import { GiftService } from './gift.service';
 @Component({
   selector: 'app-gifts',
   templateUrl: './gifts.component.html',
-  styleUrls: ['./gifts.component.css'],
-  providers: [GiftService]
+  styleUrls: ['./gifts.component.css']
 })
 export class GiftsComponent implements OnInit {
   selectedGift: Gift;

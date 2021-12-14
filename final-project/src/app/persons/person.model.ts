@@ -6,6 +6,6 @@ export class Person {
         public name: string,
         public budget: string,
         public image: string,
-        public group: Array<Gift>
+        public group: Gift[]
         ) {}
 }

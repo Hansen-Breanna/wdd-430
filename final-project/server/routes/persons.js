@@ -9,8 +9,10 @@ module.exports = router;
 // get
 router.get('/', (req, res, next) => {
     Person.find()
+      .populate('group')
       .then(persons => {
-        console.log(persons + "step into person route");
+        console.log("here come person");
+        console.log(persons);
         res.status(200).json({
             message: "Persons fetched successfully!",
             persons: persons
@@ -26,16 +28,17 @@ router.get('/', (req, res, next) => {
 
 // add
 router.post('/', (req, res, next) => {
-    const maxDocumentId = sequenceGenerator.nextId("persons");
+  console.log("made it to first line");
+    const maxPersonId = sequenceGenerator.nextId("persons");
   
-    const person = new Document({
-      id: maxDocumentId,
+    const person = new Person({
+      id: maxPersonId,
       name: req.body.name,
       budget: req.body.budget,
       image: req.body.image,
       group: req.body.group
     });
-  
+    console.log("attempting to save");
     person.save()
       .then(createdPerson => {
         res.status(201).json({
@@ -45,24 +48,25 @@ router.post('/', (req, res, next) => {
       })
       .catch(error => {
          res.status(500).json({
-            message: 'An error occurred',
+            message: error.message,
             error: error
           });
       });
+      console.log("past the save");
   });
-
+  
 // update  
 router.put('/:id', (req, res, next) => {
-    Document.findOne({ id: req.params.id })
-      .then(document => {
-        document.name = req.body.name;
-        document.description = req.body.description;
-        document.url = req.body.url;
+    Person.findOne({ id: req.params.id })
+      .then(Person => {
+        Person.name = req.body.name;
+        Person.description = req.body.description;
+        Person.url = req.body.url;
   
-        Document.updateOne({ id: req.params.id }, document)
+        Person.updateOne({ id: req.params.id }, Person)
           .then(result => {
             res.status(204).json({
-              message: 'Document updated successfully'
+              message: 'Person updated successfully'
             })
           })
           .catch(error => {
@@ -74,19 +78,19 @@ router.put('/:id', (req, res, next) => {
       })
       .catch(error => {
         res.status(500).json({
-          message: 'Document not found.',
-          error: { document: 'Document not found'}
+          message: 'Person not found.',
+          error: { Person: 'Person not found'}
         });
       });
   });
   
 router.delete("/:id", (req, res, next) => {
-    Document.findOne({ id: req.params.id })
-      .then(document => {
-        Document.deleteOne({ id: req.params.id })
+    Person.findOne({ id: req.params.id })
+      .then(Person => {
+        Person.deleteOne({ id: req.params.id })
           .then(result => {
             res.status(204).json({
-              message: "Document deleted successfully"
+              message: "Person deleted successfully"
             });
           })
           .catch(error => {
@@ -98,8 +102,8 @@ router.delete("/:id", (req, res, next) => {
       })
       .catch(error => {
         res.status(500).json({
-          message: 'Document not found.',
-          error: { document: 'Document not found'}
+          message: 'Person not found.',
+          error: { Person: 'Person not found'}
         });
       });
   });

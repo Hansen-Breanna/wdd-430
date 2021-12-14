@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { PersonsComponent } from './persons/persons.component';
 import { GiftsComponent } from './gifts/gifts.component';
 import { PersonDetailComponent } from './persons/person-detail/person-detail.component';
@@ -19,12 +18,14 @@ import { GiftsFilterPipe } from './gifts/gifts-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { Person } from './persons/person.model';
+import { PersonService } from './persons/person.service';
+import { GiftService } from './gifts/gift.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     PersonsComponent,
     GiftsComponent,
     PersonDetailComponent,
@@ -44,7 +45,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [PersonService, GiftService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

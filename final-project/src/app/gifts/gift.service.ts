@@ -21,56 +21,31 @@ export class GiftService {
           this.gifts = JSON.parse(JSON.stringify(this.gifts)).gifts;
           this.maxGiftId = this.getMaxId();
           this.gifts.sort((a, b) => {
-            if (a.name > b.name) {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return 1;
             } else {
               return -1;
             }
           });
-          var giftsListClone = this.gifts.slice(); 
+          var giftsListClone = this.gifts.slice();
           this.giftListChangedEvent.next(giftsListClone);
           this.maxGiftId = this.getMaxId();
         },
         // error method
         (error: any) => {
-          console.log(error.message); 
+          console.log(error.message);
         });
-  }
-
-  getGiftsFromDB() {
-    this.http.get<Gift[]>('http://localhost:3000/gifts')
-    .subscribe(
-      // success method
-      (gifts: Gift[]) => {
-        this.gifts = gifts;
-        this.gifts = JSON.parse(JSON.stringify(this.gifts)).gifts;
-        this.maxGiftId = this.getMaxId();
-        this.gifts.sort((a, b) => {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-        var giftsListClone = this.gifts.slice(); 
-        this.giftListChangedEvent.next(giftsListClone);
-        this.maxGiftId = this.getMaxId();
-      },
-      // error method
-      (error: any) => {
-        console.log(error.message); 
-      });
   }
 
   getGifts(): Gift[] {
-    return this.gifts.slice();
+    return this.gifts;
   }
 
   getGift(id: string): Gift {
     for (let gift of this.gifts) { // FOR each gift in the gifts list
       if (gift.id == id) { // IF gift.id equals the id THEN
         return gift; //RETURN gift
-      } 
+      }
     }
     return null; // RETURN null 
   }
@@ -85,7 +60,7 @@ export class GiftService {
     } //endFor
     return maxId;
   }
-  
+
   addGift(gift: Gift) {
     if (!gift) {
       return;
@@ -94,9 +69,9 @@ export class GiftService {
     // make sure id of the new Gift is empty
     gift.id = '';
 
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-    // add to database
+    // add to gift collection
     this.http.post<{ message: string, gift: Gift }>('http://localhost:3000/gifts',
       gift,
       { headers: headers })
@@ -125,7 +100,7 @@ export class GiftService {
       return;
     }
 
-    const pos = this.gifts.findIndex(c => c.id === originalGift.id);
+    const pos = this.gifts.findIndex(g => g.id === originalGift.id);
 
     if (pos < 0) {
       return;
@@ -135,7 +110,7 @@ export class GiftService {
     newGift.id = originalGift.id;
     // newGift._id = originalGift._id;
 
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
     // update database
     this.http.put('http://localhost:3000/gifts/' + originalGift.id,
@@ -149,7 +124,6 @@ export class GiftService {
   }
 
   deleteGift(gift: Gift) {
-
     if (!gift) {
       return;
     }
@@ -175,7 +149,7 @@ export class GiftService {
     //Create a new HttpHeathis.sorters object that sets the Content-Type of the HTTP request to application/json.
     this.http.put('http://localhost:3000/gifts', gifts,
       {
-        headers: new HttpHeaders({'Content-Type': 'application/json'})
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }
     )
       .subscribe(response => {

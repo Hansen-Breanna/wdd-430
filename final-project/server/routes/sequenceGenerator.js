@@ -1,6 +1,6 @@
 var Sequence = require('../models/sequence');
 
-var maxPeopleId;
+var maxPersonId;
 var maxGiftId;
 var sequenceId = null;
 
@@ -18,10 +18,10 @@ function SequenceGenerator() {
       if(sequence==null){
         console.log("the sequence is null");
       } else {
-        console.log("it worked");
+        console.log("sequence generated");
       }
       sequenceId = sequence._id;
-      maxPeopleId = sequence.maxPeopleId;
+      maxPersonId = sequence.maxPersonId;
       maxGiftId = sequence.maxGiftId;
     });
 }
@@ -33,9 +33,9 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
 
   switch (collectionType) {
     case 'persons':
-      maxPeopleId++;
-      updateObject = {maxPeopleId: maxPeopleId};
-      nextId = maxPeopleId;
+      maxPersonId++;
+      updateObject = {maxPersonId: maxPersonId};
+      nextId = maxPersonId;
       break;
     case 'gifts':
       maxGiftId++;

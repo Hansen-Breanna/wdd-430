@@ -3,9 +3,11 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h2>{{ gift.name }}</h2>
-        <p>For: {{ gift.recipient }}</p>
         <div class="row">
           <div class="col-xs-12">
+            <span class="pull-left">
+              <p>For: {{ giftRecipient }}</p>
+            </span>
             <span class="pull-right">
               <a class="btn btn-success mx-1" (click)="onView()">View</a>
               <a class="btn btn-primary mx-1" routerLink="edit">Edit</a>
