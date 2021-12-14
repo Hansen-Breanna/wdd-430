@@ -30,7 +30,6 @@ export class PersonEditComponent implements OnInit {
       (params: Params) => {
         console.log(params);
         var id = params.personId;
-        // console.log(this.originalPerson.group);
         if (id == undefined || null) {
           this.editMode = false;
           return;

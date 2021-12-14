@@ -11,8 +11,6 @@ router.get('/', (req, res, next) => {
     Person.find()
       .populate('group')
       .then(persons => {
-        console.log("here come person");
-        console.log(persons);
         res.status(200).json({
             message: "Persons fetched successfully!",
             persons: persons
@@ -28,7 +26,6 @@ router.get('/', (req, res, next) => {
 
 // add
 router.post('/', (req, res, next) => {
-  console.log("made it to first line");
     const maxPersonId = sequenceGenerator.nextId("persons");
   
     const person = new Person({
@@ -38,7 +35,6 @@ router.post('/', (req, res, next) => {
       image: req.body.image,
       group: req.body.group
     });
-    console.log("attempting to save");
     person.save()
       .then(createdPerson => {
         res.status(201).json({
@@ -52,7 +48,6 @@ router.post('/', (req, res, next) => {
             error: error
           });
       });
-      console.log("past the save");
   });
   
 // update  

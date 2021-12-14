@@ -19,8 +19,6 @@ export class PersonService {
       .subscribe(
         // success method
         (persons: Person[]) => {
-          console.log("getting the persons");
-          console.log(persons);
           this.persons = persons;
           // this.giftService.getGifts();
           this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
@@ -99,7 +97,6 @@ export class PersonService {
     // make sure id of the new Person is empty
     person.id = '';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log("in addPerson function: " + JSON.stringify(person));
     // add to database
     this.http.post<{ message: string, person: Person }>('http://localhost:3000/people',
       person,
