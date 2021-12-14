@@ -10,7 +10,7 @@ import { GiftService } from 'src/app/gifts/gift.service';
   templateUrl: './gift-list.component.html',
   styleUrls: ['./gift-list.component.css']
 })
-export class GiftListComponent implements OnInit {
+export class GiftListComponent implements OnInit, OnDestroy {
   gifts: Gift[] = [];
   private subscription: Subscription;
   term: string;

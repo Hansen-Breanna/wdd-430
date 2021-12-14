@@ -18,7 +18,6 @@ import { GiftsFilterPipe } from './gifts/gifts-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { Person } from './persons/person.model';
 import { PersonService } from './persons/person.service';
 import { GiftService } from './gifts/gift.service';
 

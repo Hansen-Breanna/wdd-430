@@ -21,8 +21,7 @@ export class GiftEditComponent implements OnInit {
   constructor(
     private giftService: GiftService,
     private router: Router,
-    private route: ActivatedRoute,
-    private personService: PersonService) {
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {

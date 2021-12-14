@@ -53,14 +53,15 @@ router.post('/', (req, res, next) => {
 // update  
 router.put('/:id', (req, res, next) => {
     Person.findOne({ id: req.params.id })
-      .then(Person => {
-        Person.name = req.body.name;
-        Person.description = req.body.description;
-        Person.url = req.body.url;
-  
-        Person.updateOne({ id: req.params.id }, Person)
+      .then(person => {
+        person.name = req.body.name;
+        person.budget = req.body.budget;
+        person.image = req.body.image;
+        person.group = req.body.group;
+        
+        person.updateOne({ id: req.params.id }, person)
           .then(result => {
-            res.status(204).json({
+            res.status(204).json({              
               message: 'Person updated successfully'
             })
           })

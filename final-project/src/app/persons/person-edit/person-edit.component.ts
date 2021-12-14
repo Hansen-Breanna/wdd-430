@@ -28,15 +28,14 @@ export class PersonEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        console.log(params);
-        var id = params.personId;
-        if (id == undefined || null) {
+        this.id = params.personId;
+        if (this.id === undefined || this.id === null) {
           this.editMode = false;
           return;
         }
-        this.originalPerson = this.personService.getPerson(id);
+        this.originalPerson = this.personService.getPerson(this.id);
 
-        if (this.originalPerson == undefined || null) {
+        if (this.originalPerson === undefined || this.originalPerson === null) {
           return;
         }
         this.editMode = true;
@@ -70,4 +69,5 @@ export class PersonEditComponent implements OnInit {
     }
     this.groupGifts.splice(index, 1);
   }
+  
 }

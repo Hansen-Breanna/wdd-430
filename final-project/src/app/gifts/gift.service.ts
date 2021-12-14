@@ -108,7 +108,6 @@ export class GiftService {
 
     // set the id of the new Gift to the id of the old Gift
     newGift.id = originalGift.id;
-    // newGift._id = originalGift._id;
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

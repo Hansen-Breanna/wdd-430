@@ -2,7 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Person } from './person.model';
 import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Gift } from '../gifts/gift.model';
 import { GiftService } from '../gifts/gift.service';
 
 @Injectable({
@@ -20,7 +19,6 @@ export class PersonService {
         // success method
         (persons: Person[]) => {
           this.persons = persons;
-          // this.giftService.getGifts();
           this.persons = JSON.parse(JSON.stringify(this.persons)).persons;
           this.maxPersonId = this.getMaxId();
           this.persons.sort((a, b) => {
@@ -30,7 +28,7 @@ export class PersonService {
               return -1;
             }
           });//sort the list of persons
-          var personsListClone = this.persons.slice(); // personsListClone = persons.slice()
+          var personsListClone = this.persons; // personsListClone = persons.slice()
           this.personListChangedEvent.next(personsListClone);//emit the next person list change event
           this.maxPersonId = this.getMaxId();
         },
@@ -67,7 +65,7 @@ export class PersonService {
   }
 
   getPersons(): Person[] {
-    return this.persons.slice();
+    return this.persons;
   }
 
   getPerson(id: string): Person {
@@ -124,14 +122,13 @@ export class PersonService {
   updatePerson(originalPerson: Person, newPerson: Person) {
     if (!originalPerson || !newPerson) {
       return;
-    }
-    const pos = this.persons.findIndex(d => d.id === originalPerson.id);
+    }  
+    const pos = this.persons.findIndex(p => p.id === originalPerson.id);
     if (pos < 0) {
       return;
     }
     // set the id of the new Person to the id of the old Person
     newPerson.id = originalPerson.id;
-    // newPerson._id = originalPerson._id;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // update database
     this.http.put('http://localhost:3000/people/' + originalPerson.id,
@@ -139,6 +136,7 @@ export class PersonService {
       .subscribe(
         (response: Response) => {
           this.persons[pos] = newPerson;
+          this.personListChangedEvent.next([...this.persons]);
           this.sortAndSend();
         }
       );
