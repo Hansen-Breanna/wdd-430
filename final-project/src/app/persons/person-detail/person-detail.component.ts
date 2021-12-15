@@ -35,6 +35,6 @@ export class PersonDetailComponent implements OnInit {
 
   onDelete() {
     this.personService.deletePerson(this.person);
-    this.router.navigate(['people']), {relativeTo: this.route}; 
+    this.router.navigate(['persons']), {relativeTo: this.route}; 
   }
 }

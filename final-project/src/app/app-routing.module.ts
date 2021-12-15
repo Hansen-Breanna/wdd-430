@@ -9,8 +9,9 @@ import { PersonEditComponent } from "./persons/person-edit/person-edit.component
 import { PersonsComponent } from "./persons/persons.component";
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/people', pathMatch: 'full'},
-    { path: 'people', component: PersonsComponent, children: [
+    
+    { path: '', redirectTo: '/persons', pathMatch: 'full'},
+    { path: 'persons', component: PersonsComponent, children: [
         { path: 'new', component: PersonEditComponent},
         { path: ':personId', component: PersonDetailComponent},
         { path: ':personId/edit', component: PersonEditComponent},

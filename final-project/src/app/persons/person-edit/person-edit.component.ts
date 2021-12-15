@@ -48,7 +48,7 @@ export class PersonEditComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/people']), { relativeTo: this.route };
+    this.router.navigate(['/persons']), { relativeTo: this.route };
   }
 
   onSubmit(form: NgForm) {
@@ -56,11 +56,14 @@ export class PersonEditComponent implements OnInit {
     const newPerson = new Person(value.id, value.name, value.budget, value.image, this.groupGifts);
     if (this.editMode) {
       this.personService.updatePerson(this.originalPerson, newPerson);
+      this.originalPerson.budget = value.budget;
+      this.originalPerson.name = value.name;
+      this.originalPerson.image = value.image;
     } else {
       this.personService.addPerson(newPerson);
     }
     this.editMode = false;
-    this.router.navigate(['/people']), { relativeTo: this.route };
+    this.router.navigate(['/persons']), { relativeTo: this.route };
   }
 
   onRemoveItem(index: number) {

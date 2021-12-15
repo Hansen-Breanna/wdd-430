@@ -6,6 +6,6 @@ var personSchema = mongoose.Schema({
     budget: { type: String },
     image: { type: String },
     group:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Gift' }]
-});
+}, { collection:'people' });
 
 module.exports = mongoose.model('Person', personSchema);

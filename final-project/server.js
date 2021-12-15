@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'dist/app')));
 
 // Tell express to map the default route ('/') to the index route
 app.use('/', index);
-app.use('/people', personRoutes);
+app.use('/person', personRoutes);
 app.use('/gifts', giftRoutes);
 
 // establish a connection to the mongo database

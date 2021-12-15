@@ -14,7 +14,7 @@ export class PersonService {
   maxPersonId: number;
 
   constructor(private http: HttpClient, private giftService: GiftService) {
-    this.http.get<Person[]>('http://localhost:3000/people')
+    this.http.get<Person[]>('http://localhost:3000/person')
       .subscribe(
         // success method
         (persons: Person[]) => {
@@ -39,7 +39,7 @@ export class PersonService {
   }
 
   getPersonsFromDB() {
-    this.http.get<Person[]>('http://localhost:3000/people')
+    this.http.get<Person[]>('http://localhost:3000/person')
     .subscribe(
       // success method
       (persons: Person[]) => {
@@ -96,7 +96,7 @@ export class PersonService {
     person.id = '';
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // add to database
-    this.http.post<{ message: string, person: Person }>('http://localhost:3000/people',
+    this.http.post<{ message: string, person: Person }>('http://localhost:3000/person',
       person,
       { headers: headers })
       .subscribe(
@@ -131,13 +131,13 @@ export class PersonService {
     newPerson.id = originalPerson.id;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     // update database
-    this.http.put('http://localhost:3000/people/' + originalPerson.id,
+    this.http.put('http://localhost:3000/person/' + originalPerson.id,
       newPerson, { headers: headers })
       .subscribe(
         (response: Response) => {
           this.persons[pos] = newPerson;
           this.personListChangedEvent.next([...this.persons]);
-          this.sortAndSend();
+          // this.sortAndSend();
         }
       );
   }
@@ -151,7 +151,7 @@ export class PersonService {
       return;
     }
     // delete from database
-    this.http.delete('http://localhost:3000/people/' + person.id)
+    this.http.delete('http://localhost:3000/person/' + person.id)
       .subscribe(
         (response: Response) => {
           // delete all gifts for person?
@@ -165,7 +165,7 @@ export class PersonService {
   storePersons() {
     const persons = JSON.stringify(this.getPersons());
     //Create a new HttpHeaders object that sets the Content-Type of the HTTP request to application/json.
-    this.http.put('http://localhost:3000/people', persons,
+    this.http.put('http://localhost:3000/person', persons,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       }

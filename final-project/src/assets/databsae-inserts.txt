@@ -1,4 +1,4 @@
-db.people.insertMany([
+db.person.insertMany([
 {
 id: '1',
 name: 'Rudolph',
